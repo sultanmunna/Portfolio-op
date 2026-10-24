@@ -19,7 +19,7 @@ export default function NotFound() {
       </p>
       <p>
         <Link href="/" className="case-link" style={{ fontSize: 'var(--t-s)' }}>
-          GET / <span aria-hidden="true">&rarr;</span> back to the index
+          GET / <span className="arr" aria-hidden="true">&rarr;</span> back to the index
         </Link>
       </p>
     </div>

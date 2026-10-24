@@ -154,19 +154,19 @@ main { position: relative; z-index: var(--z-content); }
 .nav { display: flex; gap: clamp(0.9rem, 0.5rem + 1.6vw, 2rem); }
 .nav a {
   font-family: var(--f-mono); font-size: var(--t-xs); text-transform: uppercase; letter-spacing: 0.08em;
-  /* underline draw, one treatment for nav */
+  /* underline draw, one treatment for nav; padding-top grows the tap target without moving the text */
   background: linear-gradient(currentColor 0 0) left bottom / 0% 1px no-repeat;
-  padding-bottom: 3px;
-  transition: background-size 0.45s cubic-bezier(0.165, 0.84, 0.44, 1);
+  padding: 5px 0 3px; margin-block: -5px;
+  transition: background-size 0.45s cubic-bezier(0.165, 0.84, 0.44, 1), translate 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
-@media (hover: hover) { .nav a:hover { background-size: 100% 1px; } }
+@media (hover: hover) { .nav a:hover { background-size: 100% 1px; translate: 0 -1px; } }
 .nav a:focus-visible, .nav a[aria-current='page'] { background-size: 100% 1px; }
 .header__id {
   background: linear-gradient(currentColor 0 0) left bottom / 0% 1px no-repeat;
-  padding-bottom: 3px; margin-bottom: -3px;
-  transition: background-size 0.45s cubic-bezier(0.165, 0.84, 0.44, 1);
+  padding: 5px 0 3px; margin: -5px 0 -3px;
+  transition: background-size 0.45s cubic-bezier(0.165, 0.84, 0.44, 1), translate 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
-@media (hover: hover) { .header__id:hover { background-size: 100% 1px; } }
+@media (hover: hover) { .header__id:hover { background-size: 100% 1px; translate: 0 -1px; } }
 .header__id:focus-visible { background-size: 100% 1px; }
 @media (max-width: 640px) {
   .header__id { background: none; }
@@ -371,6 +371,7 @@ html.frame-away .frame-bottom { translate: 0 120%; }
 .socials a {
   display: inline-flex; align-items: center; gap: 0.55em;
   font-family: var(--f-mono); font-size: var(--t-s);
+  padding-block: 4px; margin-block: -4px;
   color: var(--c-muted); transition: color 0.3s;
 }
 .socials a svg { width: 1em; height: 1em; transition: translate 0.3s cubic-bezier(0.165, 0.84, 0.44, 1); }
@@ -397,6 +398,7 @@ html.frame-away .frame-bottom { translate: 0 120%; }
 .case-link {
   display: inline-flex; align-items: center; gap: 0.6em;
   font-family: var(--f-mono); font-size: var(--t-s); color: var(--c-fg);
+  padding-block: 4px; margin-block: -4px;
 }
 .case-link svg { width: 1rem; height: 1rem; color: var(--c-accent); transition: translate 0.3s cubic-bezier(0.165, 0.84, 0.44, 1); }
 .case-link .arr { color: var(--c-accent); transition: translate 0.3s cubic-bezier(0.165, 0.84, 0.44, 1); }

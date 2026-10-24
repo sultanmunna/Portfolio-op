@@ -65,9 +65,8 @@ export async function boot(setup?: () => void) {
   setup?.();
   stopScroll();
   initPage();
-  await runLoader();
+  await runLoader(() => intro?.play());
   startScroll();
-  intro?.play();
 }
 
 /** Play the leave animation (resolve when the screen is covered). */

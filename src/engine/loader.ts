@@ -8,15 +8,17 @@ export const setLoaderFormat = (fn: (p: number) => string) => { format = fn; };
 let exit: ((root: HTMLElement) => gsap.core.Timeline) | null = null;
 export const setLoaderExit = (fn: (root: HTMLElement) => gsap.core.Timeline) => { exit = fn; };
 
-const MIN = 1.1; // seconds: long enough to read as a designed moment
-const MAX = 2.6; // seconds: a longer loader is a usability problem
+// Narrow screens pay for this in LCP, so the designed moment stays shorter there.
+const narrow = typeof window !== 'undefined' && window.matchMedia('(max-width: 640px)').matches;
+const MIN = narrow ? 0.45 : 1.1; // seconds: long enough to read as a designed moment
+const MAX = narrow ? 1.0 : 2.6; // seconds: a longer loader is a usability problem
 
 function criticalAssets(): Promise<unknown>[] {
   const imgs = [...document.querySelectorAll<HTMLImageElement>('img[data-critical], [data-intro] img')];
   return [document.fonts.ready, ...imgs.map((i) => (i.complete ? Promise.resolve() : i.decode().catch(() => {})))];
 }
 
-export async function runLoader(): Promise<void> {
+export async function runLoader(onReady?: () => void): Promise<void> {
   const root = document.getElementById('loader');
   if (!root) return;
   if (prefersReducedMotion()) {
@@ -46,6 +48,8 @@ export async function runLoader(): Promise<void> {
     };
     gsap.ticker.add(tick);
   });
+
+  onReady?.(); // page intro runs while the exit curtain plays, not after it
 
   if (exit) { await exit(root); return finish(root); }
   await gsap.timeline()
