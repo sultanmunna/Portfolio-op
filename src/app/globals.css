@@ -183,7 +183,6 @@ main { position: relative; z-index: var(--z-content); }
   pointer-events: none;
   transition: translate 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
-html.frame-away .frame-bottom { translate: 0 120%; }
 .status-line {
   font-family: var(--f-mono); font-size: var(--t-xs); color: var(--c-muted);
   font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;

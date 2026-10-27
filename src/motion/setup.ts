@@ -128,16 +128,6 @@ function initStatusLine() {
   run();
 }
 
-/* ── Frame-away: bottom corners step aside while scrolling down ─────── */
-
-function initFrameAway() {
-  onScroll(({ velocity }) => {
-    if (isTouch()) return;
-    document.documentElement.classList.toggle('frame-away', velocity > 0.6);
-    if (velocity < -0.6) document.documentElement.classList.remove('frame-away');
-  });
-}
-
 export function setupMotion() {
   setLoaderFormat((p) => String(Math.round(p)).padStart(3, '0'));
   setLoaderExit((root) => gsap.timeline()
@@ -158,6 +148,5 @@ export function setupMotion() {
   });
 
   initStatusLine();
-  initFrameAway();
   initResponsePanel();
 }
