@@ -47,7 +47,7 @@ Fix one phase, verify, commit, stop. Do not start the next phase unless asked.
 | 3 | [phase-3-seo.md](fixes/phase-3-seo.md) | Canonical, twitter card, robots, sitemap, 404 h1 (A-05) | done 91d2889 |
 | 4 | [phase-4-polish.md](fixes/phase-4-polish.md) | Orphan "of.", contact gap, muted contrast (A-07, A-08, A-09) | done 40328c9 |
 | 5 | [phase-5-content.md](fixes/phase-5-content.md) | Project depth + first live link — OWNER INPUT REQUIRED | blocked — owner confirmed 2026-10-31 that repos, problem sentences, outcomes, live URLs and contact details are all placeholders; nothing real to integrate (R-17/R-38), so 5a–5c reopen when content exists |
-| 6 | [phase-6-hygiene.md](fixes/phase-6-hygiene.md) | .gitignore, PLAN.md, data.js, DESIGN.md dead specs | pending |
+| 6 | [phase-6-hygiene.md](fixes/phase-6-hygiene.md) | .gitignore, PLAN.md, data.js, DESIGN.md dead specs | done e81c70a (deviation: the doc's muted hex, t-xl 4.6 and §6 "dispose on teardown" also drifted from phases 1–4/2, so the sync covered them; the "SVG still" fallback sentence never existed, the truthful .no-gl line was added instead; README had no data.js bullet to remove) |
 | 7 | [phase-7-rescore.md](fixes/phase-7-rescore.md) | Fresh jury re-score + close-out | pending |
 
 Run order 1 → 7. Phase 5 stays blocked until the owner answers its question
