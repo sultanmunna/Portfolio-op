@@ -433,10 +433,21 @@ main {
   color: var(--muted);
 }
 
-/* no-gl fallback */
+/* no-gl / no-js fallback */
 
 .no-gl .vitrine-view::after {
   content: "3d exhibit unavailable: webgl is disabled";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: "Fragment Mono", monospace;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+html:not(.js) .vitrine-view::after {
+  content: "3d exhibit unavailable: javascript is disabled";
   position: absolute;
   inset: 0;
   display: grid;
