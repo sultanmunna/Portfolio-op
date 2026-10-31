@@ -31,6 +31,28 @@ export function initStage(canvas) {
   const exhibits = [];
   const clock = new THREE.Clock();
 
+  // Attention: a pointer resting on or dragging one exhibit eases the other
+  // visible machines toward stillness; the rate limiter throttles the visitor.
+  const attention = { focus: null, scale: 1 };
+  const STILL = 0.15;
+
+  function watchAttention(view, exhibit) {
+    view.addEventListener("pointerenter", () => {
+      attention.focus = exhibit;
+    });
+    view.addEventListener("pointerleave", () => {
+      if (attention.focus === exhibit) attention.focus = null;
+    });
+  }
+  if (!reduce) {
+    document.addEventListener("pointerleave", () => {
+      attention.focus = null;
+    });
+    window.addEventListener("blur", () => {
+      attention.focus = null;
+    });
+  }
+
   function culled(exhibit) {
     const rect = exhibit.view.getBoundingClientRect();
     if (rect.bottom < -40 || rect.top > window.innerHeight + 40) return null;
@@ -62,10 +84,11 @@ export function initStage(canvas) {
   function frame() {
     const dt = Math.min(clock.getDelta(), 0.05);
     const t = clock.elapsedTime;
+    attention.scale += ((attention.focus ? STILL : 1) - attention.scale) * Math.min(1, dt * 3.5);
     for (const exhibit of exhibits) {
       const rect = culled(exhibit);
       if (!rect) continue;
-      if (exhibit.update) exhibit.update(dt, t);
+      if (exhibit.update) exhibit.update(exhibit === attention.focus ? dt : dt * attention.scale, t);
       draw(exhibit, rect);
     }
   }
@@ -92,8 +115,10 @@ export function initStage(canvas) {
       });
       exhibit.view = view;
       exhibits.push(exhibit);
+      if (!reduce) watchAttention(view, exhibit);
       if (reduce) requestAnimationFrame(renderVisible);
       return exhibit;
+
     },
   };
 }

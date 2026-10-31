@@ -103,6 +103,9 @@ No other hues. GL materials are chrome, glass, bone clay, and IKB tints only.
   and float, drag stays (user-initiated).
 - Page changes: same-origin navigation crossfades for 0.35s (CSS view
   transitions, Chromium); reduced motion and other browsers hard-cut.
+- Attention: resting on or dragging one exhibit eases the other visible
+  machines toward stillness until the pointer leaves. Purpose: the rate
+  limiter throttles the visitor; the gallery practices what it exhibits.
 - No smooth-scroll library: native scrolling. No scroll listeners; observers
   only.
 
