@@ -26,6 +26,9 @@ export function createLens({ environment, reduce, view, requestRender }) {
   );
   const scatter = [];
   const lattice = [];
+  const clay = new THREE.Color(0xe9e4da);
+  const ink = new THREE.Color(0x2a2824);
+  const cobalt = new THREE.Color(0x002fa7);
   for (let i = 0; i < SHARDS; i++) {
     scatter.push(
       new THREE.Vector3(
@@ -41,9 +44,11 @@ export function createLens({ environment, reduce, view, requestRender }) {
         -1.1,
       ),
     );
-    if (i % 11 === 3) shardMesh.setColorAt(i, new THREE.Color(0x002fa7));
+    if (i % 11 === 3) shardMesh.setColorAt(i, cobalt);
+    else if (i % 4 === 1) shardMesh.setColorAt(i, ink);
+    else shardMesh.setColorAt(i, clay);
   }
-  if (shardMesh.instanceColor) shardMesh.instanceColor.needsUpdate = true;
+  shardMesh.instanceColor.needsUpdate = true;
   group.add(shardMesh);
 
   let phase = "idle";
