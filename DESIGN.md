@@ -219,8 +219,9 @@ plinth." plus the way back. Static SVG, carries the concept.
 All exhibits: white vitrine panel, studio lighting, chrome/glass/bone-clay/IKB
 materials only, idle drift, drag-to-orbit with inertia.
 
-1. **Ask the Archive**: a glass lens (transmission disc with chrome rim)
-   floating over ~90 small tetrahedral shards scattered in a cloud. Idle:
+1. **Ask the Archive**: a glass lens (transmission disc with chrome rim and
+   an inked seat ring) floating over ~90 small tetrahedral shards scattered
+   in a cloud. Idle:
    shards drift slowly. Interaction: dragging orbits the whole piece; a click
    pulses the lens: shards briefly align into a neat lattice behind it, then
    relax. Reads as: retrieval focusing scattered documents.

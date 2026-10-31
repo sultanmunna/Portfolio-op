@@ -10,11 +10,13 @@ export function createLens({ environment, reduce, view, requestRender }) {
   const group = new THREE.Group();
   scene.add(group);
 
-  const rim = new THREE.Mesh(new THREE.TorusGeometry(1.05, 0.09, 24, 96), materials.chrome());
+  const rim = new THREE.Mesh(new THREE.TorusGeometry(1.05, 0.125, 24, 96), materials.chrome());
+  const seat = new THREE.Mesh(new THREE.TorusGeometry(0.9, 0.02, 12, 96), materials.inked());
+  seat.position.z = 0.09;
   const disc = new THREE.Mesh(new THREE.CylinderGeometry(1.0, 1.0, 0.07, 64), materials.glass());
   disc.rotation.x = Math.PI / 2;
   const lens = new THREE.Group();
-  lens.add(rim, disc);
+  lens.add(rim, disc, seat);
   lens.rotation.x = 0.35;
   lens.position.set(0, 0.3, 0.7);
   group.add(lens);
