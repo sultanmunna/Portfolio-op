@@ -67,7 +67,7 @@ physically-based draggable objects. Passes.
 | line | ink at 14% (hairlines), 40% (`line-strong`) for interactive boundaries | structure by line weight, no shadows |
 | accent | `#002FA7` International Klein Blue | a museum-famous blue; links, focus rings, labels of live states, and tints inside the GL objects. The one deliberate color on a monochrome page |
 
-No other hues. GL materials are chrome, glass, bone clay, and IKB tints only.
+No other hues. GL materials are chrome, inked, glass, bone clay, and IKB tints only.
 
 ### Typography (2 families)
 
