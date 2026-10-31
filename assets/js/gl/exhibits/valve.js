@@ -9,7 +9,7 @@ export function createValve({ environment, reduce, view, requestRender }) {
   const group = new THREE.Group();
   scene.add(group);
 
-  const pipe = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.3, 3.6, 32), materials.clay());
+  const pipe = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.3, 3.6, 32), materials.inked());
   pipe.rotation.z = Math.PI / 2;
   group.add(pipe);
   for (const x of [-1.8, 1.8]) {
@@ -54,7 +54,7 @@ export function createValve({ environment, reduce, view, requestRender }) {
   gauge.position.set(1.0, 0.42, 0);
   group.add(gauge);
 
-  const beadMesh = new THREE.InstancedMesh(new THREE.SphereGeometry(0.055, 12, 12), materials.clay(), BEADS);
+  const beadMesh = new THREE.InstancedMesh(new THREE.SphereGeometry(0.07, 12, 12), materials.clay(), BEADS);
   const beads = [];
   for (let i = 0; i < BEADS; i++) {
     beads.push({
