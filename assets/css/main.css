@@ -429,7 +429,7 @@ main {
 /* contact */
 
 .contact {
-  padding: var(--sp-a) var(--gutter) var(--sp-n);
+  padding: var(--sp-t) var(--gutter) var(--sp-n);
 }
 
 .contact-title {
