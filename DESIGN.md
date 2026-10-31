@@ -140,12 +140,15 @@ No other hues. GL materials are chrome, inked, glass, bone clay, and IKB tints o
 │ the systems you never see.                           │   ink on bone
 │                                                      │
 │ Backend engineer. FastAPI and applied AI.   (mono)   │   col 5
+│ four machines, below ↓                      (mono)   │   cue, anchors to #work
 └──────────────────────────────────────────────────────┘
 ```
 
 Focal: the type. Pure poster, no GL here (the exhibits are the one signature;
-restraint is written down). Mobile: type re-tuned via clamp, nav collapses to
-a simple row (three short mono links fit at 390px; no hamburger needed).
+restraint is written down). A mono secondary cue under the subtitle anchors
+to #work so the fold has one affordance; the focal stays the type. Mobile:
+type re-tuned via clamp, nav collapses to a simple row (three short mono
+links fit at 390px; no hamburger needed).
 
 ### 5.2 Introduction (statement)
 
