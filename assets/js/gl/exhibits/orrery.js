@@ -20,7 +20,7 @@ export function createOrrery({ environment, reduce, view, requestRender }) {
   const pivots = [];
   RINGS.forEach((ring, index) => {
     const ringMesh = new THREE.Mesh(
-      new THREE.TorusGeometry(ring.radius, 0.007, 8, 128),
+      new THREE.TorusGeometry(ring.radius, 0.015, 12, 128),
       materials.inked(),
     );
     ringMesh.rotation.set(ring.tilt, index * 0.8, 0);

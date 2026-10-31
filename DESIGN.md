@@ -234,7 +234,7 @@ materials only, idle drift, drag-to-orbit with inertia.
    throttles the stream: beads back up and a few deflect (IKB) and fall away.
    Reads as: rate limiting, honestly.
 4. **Agentbench**: a small orrery: a chrome hub, three bone nodes orbiting on
-   hairline-thin rings (retriever, sql, http), IKB pulses traveling node to
+   inked rings (retriever, sql, http), IKB pulses traveling node to
    hub. Reads as: tools orchestrated around a plan.
 
 ## 7. Content rules and placeholder register
