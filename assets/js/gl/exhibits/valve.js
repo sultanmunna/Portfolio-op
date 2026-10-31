@@ -53,6 +53,9 @@ export function createValve({ environment, reduce, view, requestRender }) {
   let wheelSpin = 0;
   const dummy = new THREE.Object3D();
   const cobalt = new THREE.Color(0x002fa7);
+  const clay = new THREE.Color(0xe9e4da);
+  for (let i = 0; i < BEADS; i++) beadMesh.setColorAt(i, clay);
+  beadMesh.instanceColor.needsUpdate = true;
 
   const orbit = attachOrbit(view, group, { requestRender, reduce, ry: -0.3 });
 
@@ -87,7 +90,7 @@ export function createValve({ environment, reduce, view, requestRender }) {
             bead.deflect = 0;
             bead.x = -2.4;
             bead.y = (Math.random() - 0.5) * 0.18;
-            beadMesh.setColorAt(i, new THREE.Color(0xffffff));
+            beadMesh.setColorAt(i, clay);
             beadMesh.instanceColor.needsUpdate = true;
           }
         } else {
