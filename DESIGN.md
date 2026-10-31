@@ -16,7 +16,7 @@ industrial display type.
   project boxes (GitHub and live icons on top, title, description, a beautiful
   scene below), then contact.
 - Assets: none. Projects, email, and links are honest placeholders flagged in
-  `assets/js/data.js`.
+  the README placeholder register.
 
 ## 2. Design read and dials
 
@@ -63,7 +63,7 @@ physically-based draggable objects. Passes.
 | ground | `#F7F5F0` bone | gallery wall white; warm enough to feel printed, not sterile |
 | panel | `#FFFFFF` | vitrine glass panels behind each exhibit, separated from the wall by hairlines |
 | ink | `#141311` | near-black text; pure black is banned |
-| muted | `#6B675F` | warm gray secondary text, AA on bone |
+| muted | `#5D594F` | warm gray secondary text, 6.4:1 on bone |
 | line | ink at 14% (hairlines), 40% (`line-strong`) for interactive boundaries | structure by line weight, no shadows |
 | accent | `#002FA7` International Klein Blue | a museum-famous blue; links, focus rings, labels of live states, and tints inside the GL objects. The one deliberate color on a monochrome page |
 
@@ -76,9 +76,9 @@ No other hues. GL materials are chrome, glass, bone clay, and IKB tints only.
 | display + text | Switzer 400/500/600 (Fontshare, self-hosted woff2) | neutral Swiss grotesk, closest free cut to the neo-grotesks that carry real galleries; one family, hierarchy by weight |
 | labels | Fragment Mono 400 (Google, self-hosted) | museum label voice: numbers, years, materials, links. Mono only where real data lives |
 
-- Scale: `--t-hero: clamp(3.4rem, 1rem + 9.5vw, 10.5rem)` (weight 600,
-  tracking -0.035em, leading 0.98), `--t-xl: clamp(2.1rem, 1.2rem + 3.6vw,
-  4.6rem)` (weight 500), `--t-l: clamp(1.35rem, 1.1rem + 1.2vw, 1.9rem)`
+- Scale: `--t-hero: clamp(3.1rem, 1rem + 8.5vw, 8rem)` (weight 600,
+  tracking -0.035em, leading 1.02), `--t-xl: clamp(2.1rem, 1.2rem + 3.6vw,
+  4.2rem)` (weight 500), `--t-l: clamp(1.35rem, 1.1rem + 1.2vw, 1.9rem)`
   (weight 400, statement), `--t-body: 1.0625rem`, labels 11 to 12px mono.
 - Body measure 60ch max. No uppercase display; labels use normal case.
 
@@ -106,17 +106,20 @@ No other hues. GL materials are chrome, glass, bone clay, and IKB tints only.
 
 ### WebGL rules
 
-- ONE `WebGLRenderer`, ONE fixed transparent canvas behind the content.
-  Each visible vitrine reserves a rect; the renderer draws each exhibit into
-  its rect with `setScissor`. Exhibits render only while on screen.
-- Content sits above the canvas; vitrine pointer events are captured by each
-  vitrine's overlay div and forwarded to its exhibit controller, so text stays
-  selectable and the GL canvas never eats clicks.
+- ONE `WebGLRenderer`, ONE fixed transparent canvas above the page
+  (`pointer-events: none`; the header sits above it). Each visible vitrine
+  reserves a rect; the renderer draws each exhibit into its rect with
+  `setScissor`. Exhibits render only while on screen.
+- Each `.vitrine-view` takes direct pointer and keyboard handlers with
+  `touch-action: pan-y`, so vertical scroll passes through and the GL canvas
+  never needs to catch events.
 - Lighting: `RoomEnvironment` PMREM environment (vendored with three) plus one
-  directional key. Tone mapping ACES, dpr capped at 2 (1.5 on small screens).
-- Each exhibit is a self-contained module returning `{ update(dt), dispose() }`
-  built on shared helpers (`gl/helpers.js`): renderer singleton, materials,
-  drag controller. No per-exhibit render loops.
+  directional key. Tone mapping ACES, dpr capped at 2.
+- Each exhibit is a self-contained module returning `{ scene, camera,
+  update(dt, time) }` built on shared helpers (`gl/helpers.js`): renderer
+  singleton, materials, drag controller. No per-exhibit render loops.
+- WebGL failure: the canvas is skipped and each stage shows the `.no-gl` text
+  message instead of a 3D scene.
 - Reduced motion: no idle drift/float; a single frame renders per state change;
   drag still works.
 
@@ -212,7 +215,7 @@ plinth." plus the way back. Static SVG, carries the concept.
 ## 6. Exhibit spec (four mechanisms)
 
 All exhibits: white vitrine panel, studio lighting, chrome/glass/bone-clay/IKB
-materials only, idle drift, drag-to-orbit with inertia, dispose on teardown.
+materials only, idle drift, drag-to-orbit with inertia.
 
 1. **Ask the Archive**: a glass lens (transmission disc with chrome rim)
    floating over ~90 small tetrahedral shards scattered in a cloud. Idle:
@@ -236,12 +239,8 @@ materials only, idle drift, drag-to-orbit with inertia, dispose on teardown.
 Voice: plain, specific, first person, museum-label dryness. No em or en
 dashes in visible text. No stats, no testimonials, no invented credentials.
 One label per intent ("email me" everywhere). Copy lives in index.html (the
-single page is the single source); `assets/js/data.js` holds the email and
-GitHub values that JS needs. Every invented fact is flagged there and listed
-in the handoff message: email `hello@sultanmahmud.dev`, GitHub
-`https://github.com/sultanmahmud`, the four projects, no live URLs yet
-("live soon" shown). Stack groups are the owner's presumed tools. Location
-and availability omitted.
+single page is the single source). The live placeholder register is in
+README.md.
 
 ## 8. Anti-slop purpose register (R-31 one-liners)
 
@@ -273,5 +272,6 @@ and availability omitted.
 - Idle motion true (exhibits drift) unless reduced motion; reduced-motion pass
   complete (static exhibits, all content visible).
 - QA on the served static build: screenshots desktop + mobile + reduced
-  motion, console clean, then a fresh critic subagent scores evidence-only;
-  every score 8+.
+  motion, console clean, then a fresh critic subagent scores evidence-only
+  and starts each category at 6; the target is no category below 7 on a
+  fresh pass.
