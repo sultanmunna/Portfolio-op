@@ -71,6 +71,11 @@ html {
   scroll-behavior: smooth;
 }
 
+/* keyboard focus must not wait on a smooth scroll */
+html:has(:focus-visible) {
+  scroll-behavior: auto;
+}
+
 body {
   background: var(--bone);
   color: var(--ink);
@@ -344,6 +349,12 @@ main {
   color: var(--bone);
 }
 
+.icon-link:focus-visible {
+  background: var(--ikb);
+  border-color: var(--ikb);
+  color: var(--bone);
+}
+
 .live-soon {
   font-family: "Fragment Mono", monospace;
   font-size: 0.75rem;
@@ -523,6 +534,13 @@ html.js [data-reveal] {
 html.js [data-reveal].is-in {
   opacity: 1;
   transform: none;
+}
+
+/* focus must never land on unrevealed content */
+html.js [data-reveal]:focus-within {
+  opacity: 1;
+  transform: none;
+  transition: none;
 }
 
 /* responsive */
