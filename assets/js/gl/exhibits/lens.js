@@ -18,11 +18,11 @@ export function createLens({ environment, reduce, view, requestRender }) {
   const lens = new THREE.Group();
   lens.add(rim, disc, seat);
   lens.rotation.x = 0.35;
-  lens.position.set(0, 0.3, 0.7);
+  lens.position.set(0, 0.15, 0.3);
   group.add(lens);
 
   const shardMesh = new THREE.InstancedMesh(
-    new THREE.TetrahedronGeometry(0.07),
+    new THREE.TetrahedronGeometry(0.085),
     materials.clay(),
     SHARDS,
   );
@@ -34,7 +34,7 @@ export function createLens({ environment, reduce, view, requestRender }) {
   for (let i = 0; i < SHARDS; i++) {
     scatter.push(
       new THREE.Vector3(
-        (Math.random() - 0.5) * 4.6,
+        (Math.random() - 0.5) * 3.8,
         (Math.random() - 0.5) * 2.8,
         (Math.random() - 0.5) * 2.0 - 0.8,
       ),
@@ -47,8 +47,8 @@ export function createLens({ environment, reduce, view, requestRender }) {
       ),
     );
     if (i % 11 === 3) shardMesh.setColorAt(i, cobalt);
-    else if (i % 4 === 1) shardMesh.setColorAt(i, ink);
-    else shardMesh.setColorAt(i, clay);
+    else if (i % 4 === 2) shardMesh.setColorAt(i, clay);
+    else shardMesh.setColorAt(i, ink);
   }
   shardMesh.instanceColor.needsUpdate = true;
   group.add(shardMesh);
@@ -68,6 +68,7 @@ export function createLens({ environment, reduce, view, requestRender }) {
       dummy.updateMatrix();
       shardMesh.setMatrixAt(i, dummy.matrix);
     }
+    shardMesh.rotation.y = reduce ? 0 : Math.sin(time * 0.15) * 0.25 * (1 - alpha);
     shardMesh.instanceMatrix.needsUpdate = true;
   }
 
