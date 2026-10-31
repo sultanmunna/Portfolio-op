@@ -101,6 +101,8 @@ No other hues. GL materials are chrome, glass, bone clay, and IKB tints only.
 - Exhibits: slow idle drift (rotation + float); pointer drag rotates with
   inertia. Idle motion is the concept breathing; reduced motion stops drift
   and float, drag stays (user-initiated).
+- Page changes: same-origin navigation crossfades for 0.35s (CSS view
+  transitions, Chromium); reduced motion and other browsers hard-cut.
 - No smooth-scroll library: native scrolling. No scroll listeners; observers
   only.
 
