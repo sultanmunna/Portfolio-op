@@ -18,6 +18,11 @@ export function createValve({ environment, reduce, view, requestRender }) {
     flange.position.x = x;
     group.add(flange);
   }
+  for (const x of [-1.8, 1.8]) {
+    const leg = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 0.78, 16), materials.inked());
+    leg.position.set(x, -0.72, 0);
+    group.add(leg);
+  }
 
   const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 0.5, 16), materials.inked());
   stem.position.set(0, 0.5, 0);
@@ -34,6 +39,20 @@ export function createValve({ environment, reduce, view, requestRender }) {
   wheel.position.set(0, 0.85, 0);
   wheel.rotation.x = 0.5;
   group.add(wheel);
+
+  const gauge = new THREE.Group();
+  const dial = new THREE.Mesh(new THREE.CylinderGeometry(0.17, 0.17, 0.07, 24), materials.chrome());
+  dial.rotation.x = Math.PI / 2;
+  const face = new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.13, 0.02, 24), materials.clay());
+  face.rotation.x = Math.PI / 2;
+  face.position.z = 0.035;
+  const needleGeo = new THREE.BoxGeometry(0.02, 0.11, 0.015);
+  needleGeo.translate(0, 0.05, 0);
+  const needle = new THREE.Mesh(needleGeo, materials.inked());
+  needle.position.z = 0.05;
+  gauge.add(dial, face, needle);
+  gauge.position.set(1.0, 0.42, 0);
+  group.add(gauge);
 
   const beadMesh = new THREE.InstancedMesh(new THREE.SphereGeometry(0.055, 12, 12), materials.clay(), BEADS);
   const beads = [];
@@ -74,6 +93,7 @@ export function createValve({ environment, reduce, view, requestRender }) {
       if (throttle > 0) throttle -= dt;
       const targetFlow = throttle > 0 ? 0.12 : 1;
       flow += (targetFlow - flow) * Math.min(1, dt * 4);
+      needle.rotation.z = -0.9 - (1 - flow) * 1.6;
       if (wheelSpin > 0) {
         const step = Math.min(wheelSpin, dt * 2.6);
         wheel.rotation.z += step;
