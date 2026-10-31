@@ -34,6 +34,23 @@ export function createGears({ environment, reduce, view, requestRender }) {
   gearC.position.set(0.32, 0.62, 0);
   group.add(gearA, gearB, gearC);
 
+  const base = new THREE.Mesh(new THREE.BoxGeometry(2.6, 0.08, 1.4), materials.clay());
+  base.position.y = -1.82;
+  group.add(base);
+  for (const [x, axle] of [[-0.85, -0.35], [0.72, -0.62]]) {
+    const post = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, axle + 1.78, 16), materials.inked());
+    post.position.set(x, (axle - 1.78) / 2, -0.24);
+    group.add(post);
+  }
+  for (const z of [-0.19, 0.19]) {
+    const wall = new THREE.Mesh(new THREE.BoxGeometry(0.38, 0.34, 0.04), materials.inked());
+    wall.position.set(-0.85, -1.6, z);
+    group.add(wall);
+  }
+  const chuteFloor = new THREE.Mesh(new THREE.BoxGeometry(0.38, 0.04, 0.38), materials.inked());
+  chuteFloor.position.set(-0.85, -1.76, 0);
+  group.add(chuteFloor);
+
   const blocks = [];
   const blockGeo = new THREE.BoxGeometry(0.16, 0.12, 0.12);
   for (let i = 0; i < 4; i++) {
@@ -69,7 +86,8 @@ export function createGears({ environment, reduce, view, requestRender }) {
         if (block.dropping > 0) {
           block.dropping += dt;
           const p = block.dropping / 0.7;
-          block.mesh.position.y = -0.35 - p * 1.6;
+          block.mesh.position.x += (-0.85 - block.mesh.position.x) * Math.min(1, dt * 10);
+          block.mesh.position.y = Math.max(-1.68, block.mesh.position.y - dt * 2.2);
           block.mesh.scale.setScalar(Math.max(0.001, 1 - p));
           if (p >= 1) {
             block.dropping = 0;
@@ -84,7 +102,7 @@ export function createGears({ environment, reduce, view, requestRender }) {
             0,
           );
           block.mesh.rotation.set(0, 0, a + Math.PI / 2);
-          if (!reduce && Math.random() < dt * 0.25) block.dropping = 0.001;
+          if (!reduce && Math.random() < dt * 0.25 && Math.sin(a) < -0.7) block.dropping = 0.001;
         }
       }
     },
