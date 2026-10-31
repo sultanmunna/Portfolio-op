@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sultan Mahmud, backend engineer</title>
+    <meta
+      name="description"
+      content="Sultan Mahmud builds backends: FastAPI services, data models, and applied AI systems. Four projects, shown as machines you can touch."
+    />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Sultan Mahmud, backend engineer" />
+    <meta
+      property="og:description"
+      content="Four backend projects shown as machines you can touch."
+    />
+    <meta property="og:image" content="./og.png" />
+    <link
+      rel="preload"
+      href="./assets/fonts/switzer-400-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="./assets/fonts/switzer-600-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="./assets/css/main.css" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "./assets/vendor/three.module.min.js"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">skip to content</a>
+    <canvas id="gl" aria-hidden="true"></canvas>
+
+    <header class="site-head">
+      <a class="site-name" href="./">sultan mahmud</a>
+      <nav class="site-nav" aria-label="primary">
+        <a href="#work">work</a>
+        <a href="#stack">stack</a>
+        <a href="#contact">contact</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero">
+        <h1 class="hero-title">Sultan Mahmud builds the&nbsp;systems you never&nbsp;see.</h1>
+        <p class="hero-sub">Backend engineer. FastAPI and applied AI.</p>
+      </section>
+
+      <section class="intro" aria-labelledby="intro-h">
+        <h2 id="intro-h" class="sr-only">Introduction</h2>
+        <p class="intro-text" data-reveal>
+          The work below is invisible on purpose: servers, queues, retrievers.
+          You cannot screenshot a backend. So it is shown the only honest way I
+          know: as machines that move the way the real ones move.
+        </p>
+      </section>
+
+      <section class="materials" id="stack" aria-labelledby="stack-h">
+        <div class="materials-head">
+          <h2 id="stack-h" data-reveal>Materials</h2>
+          <p data-reveal>What the machines are made of.</p>
+        </div>
+        <ul class="materials-list">
+          <li data-reveal>
+            <span class="m-group">runtime</span>
+            <span class="m-role">the language and its contracts</span>
+            <span class="m-tools">Python 3.12, Pydantic, uv</span>
+          </li>
+          <li data-reveal>
+            <span class="m-group">web layer</span>
+            <span class="m-role">the doors requests come through</span>
+            <span class="m-tools">FastAPI, ASGI, Uvicorn, OpenAPI</span>
+          </li>
+          <li data-reveal>
+            <span class="m-group">data</span>
+            <span class="m-role">where state survives</span>
+            <span class="m-tools">PostgreSQL, pgvector, Redis, SQLAlchemy, Alembic</span>
+          </li>
+          <li data-reveal>
+            <span class="m-group">ai</span>
+            <span class="m-role">retrieval, generation, evaluation</span>
+            <span class="m-tools">embeddings, OpenAI-compatible APIs, Ollama, eval harnesses</span>
+          </li>
+          <li data-reveal>
+            <span class="m-group">ops</span>
+            <span class="m-role">ship it, watch it, prove it</span>
+            <span class="m-tools">Docker, GitHub Actions, pytest, Prometheus</span>
+          </li>
+        </ul>
+      </section>
+
+      <section class="exhibits" id="work" aria-labelledby="work-h">
+        <h2 id="work-h" class="sr-only">Work</h2>
+
+        <article class="vitrine" data-reveal>
+          <header class="vitrine-head">
+            <span class="vitrine-no">01</span>
+            <div class="vitrine-links">
+              <a
+                class="icon-link"
+                href="https://github.com/sultanmahmud/ask-the-archive"
+                aria-label="Ask the Archive source on GitHub"
+              >
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+              </a>
+              <span class="live-soon">live soon</span>
+            </div>
+          </header>
+          <h3 class="vitrine-title">Ask the Archive</h3>
+          <p class="vitrine-desc">
+            Ask a document archive in plain language, get answers with the
+            sources attached.
+          </p>
+          <div class="vitrine-stage">
+            <div
+              class="vitrine-view"
+              data-exhibit="lens"
+              role="img"
+              aria-label="Interactive 3D exhibit: a glass lens floating over drifting shards. Drag to orbit. Click to focus the shards into a lattice, the way retrieval gathers scattered documents."
+            ></div>
+          </div>
+          <footer class="vitrine-label">
+            <span>no. 01</span>
+            <span>materials: FastAPI, PostgreSQL, pgvector</span>
+            <span>2026</span>
+            <span>placement: personal project</span>
+          </footer>
+        </article>
+
+        <article class="vitrine" data-reveal>
+          <header class="vitrine-head">
+            <span class="vitrine-no">02</span>
+            <div class="vitrine-links">
+              <a
+                class="icon-link"
+                href="https://github.com/sultanmahmud/taskforge"
+                aria-label="Taskforge source on GitHub"
+              >
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+              </a>
+              <span class="live-soon">live soon</span>
+            </div>
+          </header>
+          <h3 class="vitrine-title">Taskforge</h3>
+          <p class="vitrine-desc">
+            An async job queue with retries, backpressure, and failure states
+            it does not hide.
+          </p>
+          <div class="vitrine-stage">
+            <div
+              class="vitrine-view"
+              data-exhibit="gears"
+              role="img"
+              aria-label="Interactive 3D exhibit: three interlocking gears carrying small blocks. Drag to orbit. Click to spin the line faster, the way workers drain a queue."
+            ></div>
+          </div>
+          <footer class="vitrine-label">
+            <span>no. 02</span>
+            <span>materials: FastAPI, Redis, ARQ</span>
+            <span>2026</span>
+            <span>placement: personal project</span>
+          </footer>
+        </article>
+
+        <article class="vitrine" data-reveal>
+          <header class="vitrine-head">
+            <span class="vitrine-no">03</span>
+            <div class="vitrine-links">
+              <a
+                class="icon-link"
+                href="https://github.com/sultanmahmud/gatehouse"
+                aria-label="Gatehouse source on GitHub"
+              >
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+              </a>
+              <span class="live-soon">live soon</span>
+            </div>
+          </header>
+          <h3 class="vitrine-title">Gatehouse</h3>
+          <p class="vitrine-desc">
+            An API gateway that rate limits per key and sheds load instead of
+            hanging.
+          </p>
+          <div class="vitrine-stage">
+            <div
+              class="vitrine-view"
+              data-exhibit="valve"
+              role="img"
+              aria-label="Interactive 3D exhibit: a chrome valve over a stream of beads. Drag to orbit. Click to close the valve: beads back up and some deflect, the way rate limiting sheds load."
+            ></div>
+          </div>
+          <footer class="vitrine-label">
+            <span>no. 03</span>
+            <span>materials: FastAPI middleware, Redis, token buckets</span>
+            <span>2026</span>
+            <span>placement: personal project</span>
+          </footer>
+        </article>
+
+        <article class="vitrine" data-reveal>
+          <header class="vitrine-head">
+            <span class="vitrine-no">04</span>
+            <div class="vitrine-links">
+              <a
+                class="icon-link"
+                href="https://github.com/sultanmahmud/agentbench"
+                aria-label="Agentbench source on GitHub"
+              >
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+              </a>
+              <span class="live-soon">live soon</span>
+            </div>
+          </header>
+          <h3 class="vitrine-title">Agentbench</h3>
+          <p class="vitrine-desc">
+            A small orchestrator that plans, calls tools one at a time, and
+            shows its own trace.
+          </p>
+          <div class="vitrine-stage">
+            <div
+              class="vitrine-view"
+              data-exhibit="orrery"
+              role="img"
+              aria-label="Interactive 3D exhibit: a chrome hub with three orbiting tool nodes. Drag to orbit. Click to send pulses from every node to the hub, the way an agent calls its tools."
+            ></div>
+          </div>
+          <footer class="vitrine-label">
+            <span>no. 04</span>
+            <span>materials: FastAPI, function calling, Pydantic</span>
+            <span>2026</span>
+            <span>placement: personal project</span>
+          </footer>
+        </article>
+      </section>
+
+      <section class="contact" id="contact" aria-labelledby="contact-h">
+        <h2 id="contact-h" class="contact-title" data-reveal>Take a card.</h2>
+        <div class="contact-actions" data-reveal>
+          <a class="btn btn-primary" href="mailto:hello@sultanmahmud.dev">email me</a>
+          <button class="btn" type="button" id="copy-email">copy address</button>
+          <a class="btn" href="https://github.com/sultanmahmud" rel="me noopener">github</a>
+          <span class="copy-note" role="status" aria-live="polite" id="copy-note"></span>
+        </div>
+        <footer class="colophon" data-reveal>
+          <span>Switzer, Fragment Mono, three.js. No trackers.</span>
+          <span>2026</span>
+        </footer>
+      </section>
+    </main>
+
+    <script type="module" src="./assets/js/main.js"></script>
+  </body>
+</html>
