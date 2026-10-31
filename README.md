@@ -33,3 +33,5 @@ Open http://localhost:8000. Any static server works.
 - Email and GitHub in `assets/js/data.js` (used by the contact section)
 - Live URLs: each vitrine's links block in `index.html` shows "live soon"
   until a link is added there
+- Domain: canonical, og:url, twitter:image in `index.html`, plus `robots.txt`
+  and `sitemap.xml`, point at `https://sultanmahmud.dev` until it resolves
