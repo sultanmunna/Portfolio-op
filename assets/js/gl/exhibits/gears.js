@@ -24,6 +24,7 @@ export function createGears({ environment, reduce, view, requestRender }) {
   const scene = baseScene(environment);
   const cam = camera(6.2);
   const group = new THREE.Group();
+  group.position.x = 0.22;
   scene.add(group);
 
   const gearA = makeGear(0.95, 12, 0.22, materials.chrome());
@@ -97,8 +98,8 @@ export function createGears({ environment, reduce, view, requestRender }) {
         } else {
           const a = block.angle + angle;
           block.mesh.position.set(
-            -0.85 + Math.cos(a) * 1.32,
-            -0.35 + Math.sin(a) * 1.32,
+            -0.85 + Math.cos(a) * 1.19,
+            -0.35 + Math.sin(a) * 1.19,
             0,
           );
           block.mesh.rotation.set(0, 0, a + Math.PI / 2);
