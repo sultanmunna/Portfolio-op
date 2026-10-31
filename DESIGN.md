@@ -219,9 +219,10 @@ materials only, idle drift, drag-to-orbit with inertia, dispose on teardown.
    shards drift slowly. Interaction: dragging orbits the whole piece; a click
    pulses the lens: shards briefly align into a neat lattice behind it, then
    relax. Reads as: retrieval focusing scattered documents.
-2. **Taskforge**: three interlocking gears (one chrome, two bone clay) turning
-   at different speeds; small clay blocks ride the teeth around and drop
-   through a slot. Reads as: jobs picked up, worked, completed.
+2. **Taskforge**: three interlocking gears (one chrome, two inked) turning at
+   different speeds; small IKB blocks ride the ring around the chrome gear and
+   drop into an inked chute on the clay base plate. Reads as: jobs picked up,
+   worked, completed.
 3. **Gatehouse**: a chrome valve wheel atop a short pipe; a stream of small
    bone beads flows through. Idle: steady flow. Click: the valve turns and
    throttles the stream: beads back up and a few deflect (IKB) and fall away.
