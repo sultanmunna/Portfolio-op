@@ -1,5 +1,5 @@
 import { gsap } from "gsap";
-import { buildStage, drawLine, svgEl, wire } from "./kit";
+import { buildStage, drawLine, sceneLifecycle, svgEl, wire } from "./kit";
 
 const ACCENT = "#e8a33d";
 const BASE = "rgba(236, 231, 220, 0.55)";
@@ -66,14 +66,16 @@ export function mountArchive(
     });
   };
 
-  const ctx = gsap.context(() => {
+  const life = sceneLifecycle(stage);
+  const ctx = life.ctx;
+  ctx.add(() => {
     gsap.set(query, { x: HOME.x, y: HOME.y, opacity: 0 });
     gsap.set(rings, { opacity: 0 });
     gsap.set(links, { opacity: 0 });
     gsap.set(chunks, { opacity: 0 });
     gsap.set(dots, { opacity: 0.22 });
     gsap.set(bars, { scaleX: 0, transformOrigin: "left center" });
-  }, stage);
+  });
 
   let drift: gsap.core.Tween;
   let idle: gsap.core.Timeline;
@@ -211,6 +213,6 @@ export function mountArchive(
 
   return () => {
     unwire();
-    ctx.revert();
+    life.dispose();
   };
 }

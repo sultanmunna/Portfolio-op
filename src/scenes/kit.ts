@@ -69,3 +69,21 @@ export function drawLine(line: SVGLineElement) {
   gsap.set(line, { strokeDasharray: length, strokeDashoffset: length });
   gsap.to(line, { strokeDashoffset: 0, duration: 0.45, ease: "power1.out" });
 }
+
+export function sceneLifecycle(stage: HTMLDivElement) {
+  const ctx = gsap.context(() => {}, stage);
+  const timers: gsap.core.Tween[] = [];
+  const schedule = (fn: () => void, delay: number) => {
+    const timer = gsap.delayedCall(delay, fn);
+    timers.push(timer);
+    return timer;
+  };
+  return {
+    ctx,
+    schedule,
+    dispose: () => {
+      timers.forEach((timer) => timer.kill());
+      ctx.revert();
+    },
+  };
+}

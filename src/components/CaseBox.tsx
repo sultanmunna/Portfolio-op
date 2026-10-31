@@ -1,5 +1,6 @@
 import { ArrowUpRight, GithubLogo } from "@phosphor-icons/react/dist/ssr";
 import type { Project } from "@/data/site";
+import { Roll } from "./Roll";
 import { SceneStage } from "./SceneStage";
 
 export function CaseBox({ project: p }: { project: Project }) {
@@ -8,11 +9,7 @@ export function CaseBox({ project: p }: { project: Project }) {
       <header className="case-head">
         <h3 className="case-title">
           <a href={`/work/${p.slug}`}>
-            <span className="roll">
-              <span aria-hidden="true">{p.title}</span>
-              <span aria-hidden="true">{p.title}</span>
-              <span className="sr-only">{p.title}</span>
-            </span>
+            <Roll text={p.title} />
           </a>
         </h3>
         <div className="case-links">

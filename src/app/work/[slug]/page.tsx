@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight, GithubLogo } from "@phosphor-icons/react/dist/ssr";
 import { projects } from "@/data/site";
+import { Roll } from "@/components/Roll";
 import { SceneStage } from "@/components/SceneStage";
 
 type Params = { params: Promise<{ slug: string }> };
@@ -90,11 +91,7 @@ export default async function CasePage({ params }: Params) {
       <nav className="next-case" aria-label="next project">
         <span className="next-label">next service</span>
         <Link href={`/work/${next.slug}`}>
-          <span className="roll">
-            <span aria-hidden="true">{next.title}</span>
-            <span aria-hidden="true">{next.title}</span>
-            <span className="sr-only">{next.title}</span>
-          </span>
+          <Roll text={next.title} />
         </Link>
       </nav>
     </main>

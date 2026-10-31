@@ -1,5 +1,5 @@
 import { gsap } from "gsap";
-import { buildStage, svgEl, wire } from "./kit";
+import { buildStage, sceneLifecycle, svgEl, wire } from "./kit";
 
 const CELLS = 5;
 
@@ -28,13 +28,9 @@ export function mountGatehouse(
     );
   }
 
-  const ctx = gsap.context(() => {}, stage);
-  const timers: gsap.core.Tween[] = [];
-  const schedule = (fn: () => void, delay: number) => {
-    const timer = gsap.delayedCall(delay, fn);
-    timers.push(timer);
-    return timer;
-  };
+  const life = sceneLifecycle(stage);
+  const ctx = life.ctx;
+  const schedule = life.schedule;
 
   let tokens = 3;
   let running = false;
@@ -131,7 +127,6 @@ export function mountGatehouse(
   return () => {
     unwire();
     stop();
-    timers.forEach((timer) => timer.kill());
-    ctx.revert();
+    life.dispose();
   };
 }
