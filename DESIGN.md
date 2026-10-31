@@ -1,107 +1,337 @@
-# DESIGN.md — Md Sultan Mahmud Munna, backend developer portfolio
+# DESIGN.md
 
-## Phase 0: Brief
+Design contract for the Sultan Mahmud portfolio. Built with the awwwards method
+(concept first, art direction second) and filtered through antislop (during mode).
+Every major decision carries a one-line reason (R-31). Implementation must obey
+this document; changes to direction happen here first.
 
-- Subject: Md Sultan Mahmud Munna, backend developer. FastAPI is the anchor tool.
-- Audience: recruiters and engineering teams evaluating a junior/backend hire.
-- Job of the site: prove capability through projects (no experience section exists by design), and make contact effortless.
-- Language: English. Placeholder socials + email must be obvious to replace.
+## 1. Brief
 
-## Phase 1: Concept
+- Subject: Sultan Mahmud, backend developer. FastAPI and applied AI.
+- Audience: recruiters, hiring managers, engineering leads, other developers.
+- Job of the site: get interviews. With no professional experience yet, the four
+  projects carry the page, so the projects section is the centerpiece.
+- Structure (owner's requirement, fixed): introduction, tech stack, four project
+  boxes (GitHub and live icons on top, title, description, a beautiful scene
+  below), then contact.
+- Assets provided: none. Copy and projects are honest placeholders (section 7).
+- Language: English. Theme: dark, confirmed by owner ("Dark, living systems").
 
-Three candidates (territories: formal system, profession's material, name):
+## 2. Design read and dials
 
-| | A. The running service (material) | B. One route per breath (formal) | C. Sultan (name) |
+> Reading this as: single-page developer portfolio for recruiters and
+> engineering leads, in a dark living-systems language (infrastructure at
+> night), dial ENERGY 3 / RHYTHM 3 / MOTION 3.
+
+- ENERGY 3: poster-scale type, committed dark identity, one bold accent.
+- RHYTHM 3: every section uses a different layout family (section 5).
+- MOTION 3, scoped: the only scroll-choreographed system is the packet
+  (section 3). Scenes are state machines that play when in view. No parallax,
+  no pin-spam, no template reveals. Everything honors `prefers-reduced-motion`.
+- design-taste mapping: DESIGN_VARIANCE 8 / MOTION_INTENSITY 7 / VISUAL_DENSITY 3.
+
+## 3. Concept
+
+Three candidates from three territories, scored O / F / Fe / P (originality,
+fit, feasibility, portability; lower P is better):
+
+| | A. The quiet court (name) | B. The site is its own API (material) | C. One round trip (process) |
 |---|---|---|---|
-| Idea | The portfolio IS a live FastAPI service: routes instead of pages, a project index of endpoints, skills as a dependency registry, contact as a POST endpoint | The whole home page is one infinite request log; each request resolves into a project | "Sultan" commands; everything sits on a throne-line grid with the name carrying the court |
-| Signature | Hovering/resolving an endpoint row streams a 200 OK response panel | A pinned request log scroller | Letterforms as architecture |
-| O/F/Fe/P | 4 / 5 / 4 / 2 | 3 / 3 / 3 / 4 | 2 / 3 / 3 / 5 |
+| Idea | Sultan means authority: the site is a court at night, the visitor a petitioner, the work heard not shown | Sections are routes, meta is headers, the 404 is a real response | Your visit is one request: it arrives, passes through the machinery, visits four services, and returns to you as the reply |
+| Layout | chambers along a corridor | documentation as page | a route spine with stations; projects as stacked service cases with live scenes |
+| Motion | processions | resolves | flows like current, settles on arrival |
+| Scores | 4 / 3 / 3 / 2 | 3 / 4 / 5 / 3 | 4 / 5 / 4 / 2 |
 
-**Pick A.** It is anchored in the subject's actual daily material (FastAPI request/response cycle), generates every layout, motion, copy and 404 decision, and scores best on fit and portability-to-others (nobody else can claim FastAPI's exact visual language).
+Pick: **C. One round trip**. Highest fit (it is literally how backend work
+works) and the most generative: it dictates the spine layout, the packet
+motion, per-project live scenes, the contact section as the returning reply,
+and the 404 as a failed request. B lives mostly in labels; A drifts toward
+ornament. Steals: from B, the designed 404 as an honest failed response and
+request-state language in scene readouts; from A, nothing structural.
 
-### Concept Card
+Concept card:
 
 ```
-Idea:        The portfolio behaves like a running FastAPI service: you navigate it the way you call it.
-Metaphor:    Live service. Routes, endpoints, requests, responses, a health line that never sleeps.
-Signature:   The project index is an endpoint registry. Hovering a row resolves a "200 OK" preview
-             panel: method + path, latency ticking, a JSON-shaped summary of the project. Clicking
-             enters the case page like calling the endpoint (panel keeps resolving during transition).
-Emotion:     Opening beautifully typeset API docs that suddenly came alive.
-Motion verb: resolve. Small shapes snap (0.25-0.5s expo.inOut snaps), lines stream left-to-right,
-             panels settle with a 1px rise. Nothing drifts; everything is resolved, on the clock.
-Screenshot:  The endpoint index mid-hover: one row resolved, a floating response panel with
-             GET /projects/rag… 200 OK · 12ms and a two-line JSON of the project.
+Idea:        you are the client: your visit is one request that leaves you,
+             travels through Sultan's machinery, and returns as a reply
+Metaphor:    the request lifecycle of a backend system
+Signature:   the packet: one amber pulse that descends a persistent route
+             spine as you scroll; every section is a station it passes and
+             each project scene runs as it arrives
+Emotion:     calm, ordered motion: "his systems run, and I can watch them run"
+Motion verb: flows like current, settles on arrival
+Screenshot:  the packet crossing a project scene mid-sequence, the spine lit
+             behind it
 ```
 
-Anchor: the actual FastAPI request/response material (docs UI patterns, method chips, status codes, error shapes). FastAPI's teal informs the accent because it comes from the subject's world.
+Genericness test: a generic model lands at dark hero + gradient glow + tech
+chips + screenshot cards + contact form. This design has none of those: no
+glow washes, tech as labeled stations on a route, live SVG scenes instead of
+screenshots, mailto plus copy instead of a dead form. Passes.
 
-## Phase 2: Art direction system
+## 4. Art direction
 
-### Palette (roles; sampled from developer-tool consoles, not AI defaults)
+### Palette (6 roles, one accent)
 
-| Role | Hex | Notes |
+| Role | Value | Reason |
 |---|---|---|
-| `--c-bg` | `#0c0f12` | near-black console ground, slightly blue |
-| `--c-fg` | `#e3e7ea` | primary ink |
-| `--c-muted` | `#8b949e` | secondary text; AA on bg (7.0:1) |
-| `--c-line` | `rgb(227 231 234 / 0.14)` | hairlines, borders |
-| `--c-surface` | `#121619` | panels, response cards, header |
-| `--c-accent` | `#14b8a6` | ONE signal teal, sampled from FastAPI's docs; used for status chips, active states, focus, selection |
-| `--c-curtain` | `#121619` | page transition panel |
+| ground | `#0C0E12` | deep blue-black: night machinery; cool so the accent and ivory read as lit |
+| ground-2 | `#13161D` | scene stages and elevated surfaces, one step up |
+| ink | `#ECE7DC` | warm ivory: the human voice, warm against the cool ground |
+| muted | `#9AA2B1` | cool slate for secondary text, passes AA on ground |
+| line | ivory at 14% | hairlines, structural; `line-strong` (ivory at 32%) borders interactive elements so boundaries pass 3:1 |
+| accent | `#E8A33D` | signal amber: the packet, live states, focus ring. Amber reads as current and heat without the acid-green or purple tells; warm-on-cool is the page's one deliberate contrast |
 
-Error/404 uses a restrained warm signal `#f87171` locally (status code semantics: 4xx is red in every API console).
+No other colors exist. Scenes may dim the accent (alpha), never add hues.
+Pure black and white are banned.
 
-### Type
+### Typography (3 roles, third one tiny and functional)
 
-- **Archivo** (Google, variable wght+wdth): one family, two personalities. Display = wdth ~110-125, wght 800, uppercase for the mega name. Text = wdth 100, 400/500.
-- **JetBrains Mono** (Google): the data voice. Endpoint paths, method chips, status lines, meta labels, coordinates, the loader counter. Never for body copy.
-- Roles: display (name, section titles), body (paragraphs, case text), data (everything request-shaped).
-- Scale: `--t-mega: clamp(3.2rem, 1rem + 11vw, 11rem)` (long name, must fit), xl, l, m per engine defaults. Display tracking -0.02em (negative weight per size), mono meta +0.08em.
+| Role | Face | Reason |
+|---|---|---|
+| display | Big Shoulders (Google, variable) | condensed industrial lettering: infrastructure plates and vessels; the machinery world in type form |
+| text | Host Grotesk (Google) | clean, slightly humanist; quiet enough to let display lead, not Inter |
+| mono | DM Mono (Google) | third voice for real data only: station labels, scene readouts, status language; never for headings or eyebrows |
 
-### Grid & rhythm
+- Fluid scale: `--t-mega: clamp(4rem, 1.2rem + 13vw, 15rem)`,
+  `--t-xl: clamp(2.4rem, 1.4rem + 4.6vw, 5.5rem)`,
+  `--t-l: clamp(1.6rem, 1.25rem + 1.8vw, 2.75rem)`,
+  `--t-body: clamp(1rem, 0.95rem + 0.2vw, 1.125rem)`, `--t-s: 0.875rem`,
+  `--t-xs: 0.75rem` (mono meta).
+- Display: leading 0.85 to 0.9, tracking -0.02em, optical alignment via small
+  negative indents, `text-wrap: balance`, descender room on split lines.
+- Body: 16 to 18 px, measure max 60ch. Mono meta: 12 to 14 px, tabular numerals.
+- Mono scope rule (R-06): mono appears only where real state or data is shown.
 
-- 12 columns, fluid gutter. Text blocks hang from col 1, col 5, col 9. Four-corner frame: name top-left, nav top-right, status line bottom-left, "available" chip bottom-right (empty on mobile).
-- Section rhythm: tight (8u) and airy (24u+) alternating. The endpoint index rows are full-width.
-- Shape: radius 0 everywhere (console). 1px lines are the structural device.
+### Grid and frame
 
-### Composition plan (one family per section, no repeats)
-
-```
-HERO        poster + statement hybrid: STATUS line (mono), name at mega size split across
-            3 lines ("MD SULTAN / MAHMUD / MUNNA"), role statement below, corners active.
-STACK       statement + registry table: "The stack" heading, then a ruled registry:
-            rows = group (CORE / DATA / AI / OPS), items in mono chips, one line each.
-PROJECTS    index list: each project is an endpoint row
-            [METHOD chip] /projects/<slug>   <title>   <year> → hover resolves response panel.
-            Signature moment lives here. Touch: inline summary, no floating panel.
-ABOUT       asymmetric pair: short bio text col 1-5, "what I'm steering toward" col 7-11.
-CONTACT     poster finale: "POST /contact" mega line, email as a big mailto link that
-            copies on click (accessibility: real link, copy is progressive), socials as rules.
-CASE PAGE   split frame: meta rail (mono: method, year, role, stack) on 3 cols; content on
-            8. Media = typographic/procedural cover. Sequence: context, build, outcome.
-404         `404 Not Found` set as an error-response payload with a GET / link back.
-```
+- 12 fluid columns, gutter `clamp(16px, 2.5vw, 32px)`, outer margin = gutter.
+- Hang everything on three vertical lines: col 1, col 5, col 9.
+- Four-corner frame: name top-left (link home), nav top-right (Work, Stack,
+  Contact), packet station readout bottom-left (real state, section 3),
+  "Email me" bottom-right (real mailto). Corner zones stay empty otherwise;
+  the frame steps aside on scroll down and returns on scroll up.
+- Radius rule: all sharp (0). Elevation is line weight, not shadow. Interactive
+  elements are rectangular with `line-strong` borders.
 
 ### Motion language
 
-- Family: expo only (`out`, `inOut`, soft for UI).
-- Verb "resolve": entering things appear left to right (clip), like output printing. Panels translate 6px up while fading. Never drifts; never floats.
-- Signature implementation: GSAP quickTo panel follows pointer across rows; row content sets panel text (streamed with a short position-scramble); latency ticks from a 6-24ms random per row, frozen on settle.
-- Idle state: the status line ("GET /healthz 200 · 12ms") re-resolves on a slow clock (every 6-9s), a blinking block cursor on the contact line. One clock via gsap.ticker. Paused under reduced motion.
-- Hovers: nav links = underline draw; endpoint rows = the signature resolve; social links = underline rise (utility); CTA (email) = fill from pointer side, in the verb.
+- One clock: `gsap.ticker`. Lenis smooth scroll on pointer devices; native
+  scroll on touch. No `requestAnimationFrame` loops, no scroll listeners.
+- Eases: travel `none` or `power1.inOut`, arrivals `power3.out`, live breathing
+  `sine.inOut`. Durations: micro 250 to 400 ms, reveals 0.6 to 0.9 s, stagger
+  40 to 70 ms. Big things move slower than small things.
+- Hover, one treatment per role: primary targets flood or roll (label slides
+  inside a clipped line, fill floods); utility links change color only; the
+  packet nudges toward hovered interactive elements.
+- Idle: the packet breathes softly at rest; scenes loop quietly while in view
+  and pause offscreen. The concept never fully freezes.
+- Reduced motion: no smooth scroll, no scrub, no loader theatrics, scenes show
+  their designed still frame, the packet sits as a static marker on the spine,
+  all content fully visible.
 
-### Genericness test
+### The packet (signature system)
 
-A generic model would produce: centered hero + blob → no (four-corner console frame); Inter + purple gradient → no (Archivo + teal from FastAPI); "3 equal project cards" → no (endpoint index rows); "passionate about backend development" → no (request-log voice: "Istio-free, proxy lethal knitwear" — no. Voice: "I build the parts of the product that never appears on screen, and make sure they respond in under 20ms"). Icon library needed for GitHub/Live link icons → use inline SVGs (real glyph icons), not emoji.
+One driver module owns it. Input: scroll progress. Outputs: packet position
+along the spine, spine fill, the corner station readout, and scene activation
+windows. Idle input: time (the breathing pulse). The spine is a real vertical
+line on the col-1 axis, drawn per section; the packet travels it, dips into
+each project scene while that case is in view, and completes the loop at the
+contact section where the reply "returns" to the visitor.
 
-## Phase 3 notes
+## 5. Composition plan (five families, no repeats)
 
-- No WebGL. The concept's life comes from the response panels, the status line and typography; GL would be decoration here. Keeps mobile fast (no loaded shader at all).
-- Loader: mono counter + name, exits in the verb (lines collapse upward). ≤2.6s.
-- Images: none of the person (placeholder-owner). Project covers are typographic compositions (hone: title + method chip on surface), honest procedural, no fake screenshots.
-- Content file: `src/data/site.ts` with `placeholder: true` on all projects and socials.
+### 5.1 Hero (poster family)
 
-## Phase 4 log
+```
+┌──────────────────────────────────────────────────────┐
+│ sultan mahmud                       work stack contact│
+│                                                      │
+│ SULTAN                                               │   mega display,
+│ MAHMUD                                               │   two lines, col 1
+│                                                      │
+│ I build the part you never see.                      │   role line, col 5
+│ Backend engineer. FastAPI and applied AI.            │
+│                                                      │
+│ ● station 00 / arrival              email me         │   corner readout + action
+└──────────────────────────────────────────────────────┘
+```
 
-- QA passes recorded in `.shots/`. Critic scores appended below.
+Focal: the name. Loader hands off here: the spine draws in, the packet is
+born at the name. Mobile: name re-tuned via clamp, corners collapse to a top
+bar plus full-screen menu overlay (focus-trapped, Escape closes).
+
+### 5.2 Introduction (statement family)
+
+```
+┌──────────────────────────────────────────────────────┐
+│ │ (spine)                                            │
+│ │   I am Sultan Mahmud. I build backends: FastAPI    │   t-l paragraph,
+│ │   services, data models, and the AI systems        │   cols 2 to 10,
+│ │   behind them. No company has hired me for it      │   no eyebrow
+│ │   yet: what I have instead are systems I           │
+│ │   designed, built, broke, and fixed myself.        │
+│ │                                                    │
+│ ● station 01 / the engineer                          │
+└──────────────────────────────────────────────────────┘
+```
+
+Focal: the statement. Honest about no experience; the voice carries it.
+Mobile: full-width text, same rhythm.
+
+### 5.3 Machinery, the tech stack (diagram family, asymmetric pair)
+
+```
+┌──────────────────────────────────────────────────────┐
+│ │ Machinery        │  the route, top to bottom:      │
+│ │ What I run the   │  ─ runtime     Python, Pydantic │
+│ │ systems with.    │  ─ web layer   FastAPI, ASGI    │
+│ │                  │  ─ data        PostgreSQL,      │
+│ │                  │    pgvector, Redis, SQLAlchemy  │
+│ │                  │  ─ ai          embeddings, LLM  │
+│ │                  │    tooling, evaluation          │
+│ │                  │  ─ ops         Docker, CI,      │
+│ │                  │    pytest, observability        │
+│ ● station 02 / the machinery                          │
+└──────────────────────────────────────────────────────┘
+```
+
+Left (cols 1 to 4): title plus one line. Right (cols 5 to 12): the stack as
+stations along the spine, each group a mono label and its tools in text with
+a plain-language role ("FastAPI: the doors"). No chips, no logo wall, no
+grid texture. The packet stops at each group as you scroll. Mobile: stacked,
+spine on the left edge.
+
+### 5.4 Work (stacked cases family, the centerpiece)
+
+Four full-width cases, each:
+
+```
+┌──────────────────────────────────────────────────────┐
+│ ASK THE ARCHIVE              [github] [live]         │  title left, icons right,
+│ A RAG service: ask a document archive in plain       │  44px targets
+│ language, get answers with sources.                  │
+│ ┌──────────────────────────────────────────────────┐ │
+│ │  scene: chunks fly into a vector field, three    │ │  live SVG stage,
+│ │  neighbors light up, an answer assembles         │ │  ground-2, 16:7
+│ │  ( send a query )                                │ │  real button
+│ └──────────────────────────────────────────────────┘ │
+└──────────────────────────────────────────────────────┘
+```
+
+- Icons: GitHub mark and external-link glyph (Phosphor set, relevance: the
+  standard forge and outbound marks). Live link renders only if a URL exists;
+  otherwise a muted "demo soon" label, never a dead control.
+- The scene is the proof: no screenshots exist for backend work, so each case
+  shows its system running (spec in section 6). The "send" button injects a
+  real interaction into the scene.
+- Hover: the title's inner label rolls; the scene brightens one step; the
+  packet dips in. Whole case is keyboard-reachable; scenes are labeled.
+- Mobile: case stacks (title, icons row, description, scene, button); scenes
+  scale via SVG viewBox; spacing re-tuned.
+
+### 5.5 Contact (finale family)
+
+```
+┌──────────────────────────────────────────────────────┐
+│ │  YOUR REQUEST LEAVES.                              │  display line,
+│ │  MY REPLY COMES BACK.                              │  cols 1 to 12
+│ │                                                    │
+│ │  email me        copy address      github          │  one email intent,
+│ │                                                    │  three real actions
+│ │  colophon: Big Shoulders, Host Grotesk, DM Mono.   │  small print,
+│ │  No trackers. 2026.                                │  real only
+└──────────────────────────────────────────────────────┘
+```
+
+Focal: the display line. The packet completes the loop here and settles into
+the period of the last line. Actions: mailto (primary), copy-address button
+with real "copied" feedback, GitHub link. No form (a form with no backend is
+a dead control). Mobile: stacked actions, 44px targets.
+
+### 5.6 Inner pages
+
+- `/work/[slug]` case page per project: title, one-line summary, meta (role,
+  year, stack, links), the scene at full width, then context, idea, craft,
+  outcome from the placeholder content, next-project link with a shared
+  element transition (the case title grows into the next title).
+- 404: the round trip failing honestly: "404: no service at this route" in
+  the system's voice, with the way back. Carries the concept.
+
+## 6. Scene spec (four live systems)
+
+All scenes: SVG on `ground-2`, one accent, mono readouts, driven by the one
+GSAP clock, IntersectionObserver-gated (pause offscreen), `aria-label`
+describing what happens, real button, and a designed reduced-motion still
+frame (final state, captioned). Readouts print the visitor's own real elapsed
+time, never invented metrics.
+
+1. **Ask the Archive** (RAG service). Left: a source document splits into
+   chunks; chunks fly into a scattered dot field (the vector space); a query
+   pulse enters; the three nearest neighbors glow and draw lines to the query;
+   an answer assembles on the right. Button: "send a query" replays the
+   retrieval with a fresh query pulse.
+2. **Taskforge** (async job queue). Jobs drop onto an intake rail; three
+   worker bays pick tiles, fill a progress stroke, and release them to a done
+   column; a backlog meter breathes; an occasional job retries (dashed amber,
+   honest about failure). Button: "enqueue a job" adds one.
+3. **Gatehouse** (API gateway, rate limiting). Request pulses stream through
+   a gate; a token bucket above refills segment by segment; under-limit
+   requests pass and exit "200"; over-limit ones deflect downward, outlined,
+   "429". Button: "burst" sends a burst and sheds some, honestly.
+4. **Agentbench** (AI agent orchestrator). A plan node emits three steps; the
+   steps fan out to tool nodes (retriever, sql, http) that light in turn;
+   results flow back and an answer assembles; a mono trace prints real
+   elapsed milliseconds. Button: "run a task" re-runs the plan.
+
+## 7. Content rules and placeholder register
+
+Voice: plain, specific, first person, sentence case, a little dry confidence.
+Under-20-word hero line. No em or en dashes anywhere visible. Banned:
+elevate, seamless, unleash, cutting-edge, passionate, "where X meets Y".
+One label per intent: "Email me" everywhere. Numbers appear only as real
+visitor-session data; no stats, no testimonials, no client logos.
+
+Every invented fact is `placeholder: true` in `src/data/site.ts` with a top
+comment listing assumptions, mirrored in the final handoff message:
+
+- Email `hello@sultanmahmud.dev` (derived from the name; owner must replace).
+- GitHub URL `https://github.com/sultanmahmud` (owner must replace).
+- Four projects, invented for the owner to replace with real work:
+  Ask the Archive (FastAPI, pgvector, retrieval), Taskforge (queue, Redis,
+  workers), Gatehouse (gateway, rate limiting), Agentbench (agent
+  orchestration). Titles evocative but plausible; no real company names.
+- Live links: omitted until the owner provides URLs ("demo soon" label shown).
+- Stack groups (section 5.3) are the owner's presumed tools, marked
+  placeholder in `site.ts` for easy editing.
+- Location: omitted (unknown). Availability: omitted (unknown).
+
+## 8. Anti-slop purpose register (R-31 one-liners)
+
+- Dark theme: the subject is invisible machinery made visible; night is where
+  systems run (owner-confirmed direction, R-21 developer reason).
+- One amber accent: a single signal color means "live" stays unambiguous (R-29).
+- Big Shoulders display: infrastructure lettering for a machinery concept (R-06).
+- DM Mono scope: only real states and data; never headings (R-06).
+- All-sharp radius with hairlines: engineering plates; hierarchy by line
+  weight, not shadow (R-11, R-12).
+- Spine and packet: the identity motif, repeated in hero, readout, scenes,
+  contact, and 404 (Part 3 identity motif).
+- Scenes instead of screenshots: no product UI exists to shoot; diagrams of
+  real systems are the honest stand-in (R-22, C-5).
+- mailto and copy instead of a form: every control does something real (R-26).
+- Loader: a short handshake that reflects real loading, max 2.6 s, then the
+  packet is born (continuity, not decoration).
+- No scroll cues, no decorative dots, no eyebrow badges, no version labels.
+
+## 9. Quality bar
+
+- Throttled mobile LCP under 2.5 s, CLS under 0.05, JS under 300 KB gzipped
+  (no WebGL keeps this easy), page under 3 MB, loader done in 2.6 s.
+- Zero serious or critical axe violations; skip link first; every focus stop
+  visible (2 px amber ring); keyboard closes the menu with Escape.
+- No horizontal overflow at 390 px; tap targets 44 px; hover never required.
+- `idleMotion` true (the packet breathes); reduced-motion pass complete.
+- QA on the production build with shoot.mjs and audit.mjs, then a fresh
+  critic subagent scores it evidence-only, two full passes, every score 8+.
+- Final pass cuts the weakest accessory; hover, focus and press states survive.

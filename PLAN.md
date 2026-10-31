@@ -1,45 +1,70 @@
-# PLAN.md — Portfolio roadmap (read this first when continuing in a new session)
+# PLAN.md
 
-Project: portfolio for **Md Sultan Mahmud Munna**, backend developer (FastAPI).
-Repo: `D:\Study\Coding\Portfolio` (branch `First`). Stack: Next.js 16 App Router + TS + GSAP + Lenis. No Tailwind, no WebGL (intentionally no GL).
-Quality bar and workflow: the **awwwards** skill (`C:\Users\VICTUS\.agents\skills\awwwards\`) — read `references/quality.md` and `references/quality-bar.md` before QA. Design system: `DESIGN.md` in repo root.
+Implementation plan for the portfolio described in `DESIGN.md`. `DESIGN.md` is
+the contract; if build reality forces a change, the change lands there first.
 
-## Concept (one line)
+## Stack (one-line reason)
 
-The portfolio behaves like a running FastAPI service: routes instead of pages, project index = endpoint registry, hovering a row resolves a floating "200 OK" response panel (signature moment), contact = `POST /contact`, 404 = a proper error payload.
-Motion verb: **resolve** (left-to-right wipe, snap, settle). Accent: FastAPI teal `#14b8a6` on near-black `#0c0f12`. Type: Archivo (display, wdth/wght) + JetBrains Mono (data voice).
+Next.js (App Router, TypeScript), plain CSS with custom-property tokens,
+GSAP + ScrollTrigger + Lenis, no WebGL. Reason: the repo already ran Next.js,
+`next/font` and its metadata tooling fit the brief, and SVG/DOM scenes need no
+GL to hold 60 fps on phones.
 
-## Environment notes (Windows)
+Dependencies: `next`, `react`, `react-dom`, `gsap`, `lenis`; dev:
+`@playwright/test` (for the awwwards shoot script), `axe-core`, eslint config.
 
-- Node 24, npm 12. PowerShell. Watch out: PowerShell `Move-Item a b c .` fails with 3+ sources.
-- Installed: next 16.4.3, react 19.3, gsap, lenis, playwright (chromium headless installed), axe-core.
-- QA commands (run from repo root):
-  - `npm run build`
-  - `npx next start -p 4400` (background, prod server)
-  - `node C:\Users\VICTUS\.agents\skills\awwwards\scripts\shoot.mjs http://127.0.0.1:4400/ --crawl --nav`
-  - `node C:\Users\VICTUS\.agents\skills\awwwards\scripts\audit.mjs http://127.0.0.1:4400/ > .shots/audit.txt`
-- If shoot.mjs reports no Chromium: `npx playwright install chromium`.
+## Starting state
 
-## Remaining work (in order)
+The working tree holds unstaged deletions of the previous portfolio (owner
+wiped it for this rebuild). Phase 0 commits that reset so every later commit
+is revertible on a clean base.
 
-1. [ ] **P1 Clean scaffold leftovers**: delete `src/app/page.module.css` and starter `src/app/favicon.ico` (icon.svg convention replaces it); verify `src/app/page.tsx`/`globals.css` imports are clean.
-2. [ ] **P2 Build**: `npm run build`. Watch for: typing of `LayoutProps<'/'>` (Next 16 generated types), gsap/SplitText import paths, JSX attribute issues (e.g. numeric `data-delay={j < 3 ? ... : undefined}` on case page — runtime value fine, but `calculate()` CSS typo already fixed), trailing-slash hrefs already normalized to no-slash.
-3. [ ] **P3 QA pass 1**: build + `next start -p 4400` (background) + shoot.mjs `--crawl --nav` + audit.mjs. Read `.shots/summary.json`, every `report.json`, and LOOK AT every screenshot (desktop/mobile/reduced-motion/keyboard/hover). Zero console errors, no horizontal overflow, no text hidden under reduced motion, mobile LCP < 2.5s, CLS < 0.05.
-4. [ ] **P4 Fix loop**: address shoot/audit findings. Likely suspects to inspect: response panel positioning on narrow desktop, `.ep::before` z-index over section borders, header backdrop-filter perf, hero `data-split="chars"` with `<br>` lines (SplitText), `aria-current` logic in Header, contact big-email hover fill contrast (accent bg + dark text), loader exit timing.
-5. [ ] **P5 Critic pass**: launch a FRESH `critic` subagent with the brief from `references/quality-bar.md`, giving it only `.shots/` paths + audit output — never DESIGN.md, never code. Scores must be ≥ 8. Iterate fixes + new critic each pass (min 2 full QA passes).
-6. [ ] **P6 Final trim**: "remove one accessory" — cut the weakest decorative effect. Hover/focus/press feedback are never cut.
-7. [ ] **P7 Ship artifacts**: OG image via `node $SKILL\scripts\og.mjs <url>` after prod server runs → `public/og.png`, then rebuild. Check favicon/apple-icon, robots, sitemap already exist.
-8. [ ] **P8 Commit pipeline (per AGENTS.md)**: `verifier` → `reviewer` → `committer` subagents (committer stages only repo files, Conventional Commits, no Co-Authored-By, no push; `push` subagent only if user explicitly asks). Current git state: **nothing committed yet**; all files untracked. Sensible first commit: `feat: portfolio site (concept, engine, pages, motion)` after P2 build passes, then later commits per QA round.
-9. [ ] **P9 README**: `readme-writer` subagent — replace the empty README.md with run/replace-placeholder instructions. NO Contributing/Code of Conduct/License/Support sections.
+## Pipeline (per AGENTS.md)
 
-## Things a new session must know
+Implementation stays with the main agent. After each phase: `verifier` (runs
+build/lint), then `reviewer` (diff vs AGENTS.md), then `committer` (one
+logical change per commit, never pushes). Small self-contained phases commit
+immediately; the QA phases run the full chain. `critic` and `a11y-perf`
+subagents are read-only QA instruments. `push` runs only if asked.
 
-- Do not add a GL/WebGL layer; decision made (DESIGN.md). Do not add Tailwind.
-- Do not remove the engine plumbing (`src/engine/*`, `src/motion/setup.ts`) — it is the framework-agnostic engine from the skill's `references/engine.md`, adapted (GL module stripped).
-- The user has ~100k context: keep answers tight, point to files instead of pasting them.
-- All project content/socials/email/URLs are placeholders in `src/data/site.ts` (flagged `placeholder: true`). Live links use `.example.com` domains deliberately.
-- Name is real: Md Sultan Mahmud Munna ("Munna"). No experience section exists by design — projects carry the site.
+## Phases
 
-## Success criteria
+| # | Phase | Tasks | Verification | Commit |
+|---|---|---|---|---|
+| 0 | Reset | stage the deletions of the old site | tree clean, `git status` empty | `chore: remove previous portfolio build` |
+| 1 | Scaffold | package.json, tsconfig, next.config, eslint, gitignore, app shell (layout, page, not-found), fonts via `next/font` (Big Shoulders, Host Grotesk, DM Mono), install deps | `npm run build` passes; dev server boots with no console errors | `chore: scaffold next.js app shell` |
+| 2 | Tokens and content | globals.css tokens (palette, type scale, spacing moods, focus ring), `src/data/site.ts` with the typed content file and `placeholder: true` register from DESIGN.md section 7 | build passes; tokens lint against DESIGN.md hex values | `feat: design tokens and content model` |
+| 3 | Engine | gsap setup, Lenis adapter, reveal module, loader (handshake, max 2.6 s, reflects real load), route transition, the packet driver module (one input: scroll; outputs: position, spine fill, station readout, scene gates); reduced-motion gates everywhere | build passes; manual smoke: loader handoff, scroll drives packet, reduced motion shows static marker | `feat: motion engine and packet driver` |
+| 4 | Frame, hero, intro | four-corner frame (name, nav, station readout, Email me), mobile menu overlay (focus trap, Escape), poster hero, statement intro | build + browser pass: keyboard nav, focus ring, no overflow at 390 px | `feat: frame, hero and intro` |
+| 5 | Machinery | stack section as route stations (5.3), asymmetric pair layout, packet stop-points | build + visual pass | `feat: machinery section` |
+| 6 | Work shell | four case boxes: title, description, GitHub/live controls (live renders only with a URL, else "demo soon"), scene stage placeholder, send buttons wired to no-op-safe stubs removed later | build; tab through all controls; 44px targets | `feat: work section shell` |
+| 7 | Scenes (4 commits) | scene modules per DESIGN.md section 6: archive, taskforge, gatehouse, agentbench; each with IntersectionObserver gating, real button behavior, reduced-motion still, aria-label | per scene: build + visual pass + reduced-motion check | `feat: scene: <name>` x4 |
+| 8 | Contact, 404, cases, SEO | finale contact (mailto, copy-address with feedback, GitHub), designed 404, `/work/[slug]` case template with next-project transition, metadata: titles, descriptions, canonical, OG image, sitemap, robots, JSON-LD Person, favicon (packet mark) | build; 404 returns real 404; OG image loads; forms of every control clicked | `feat: contact, case pages, 404 and seo` (split if needed) |
+| 9 | QA pass 1 | `npm run build && npx next start`, awwwards `shoot.mjs --crawl` and `audit.mjs`; read every screenshot and report.json; fresh `critic` subagent scores evidence-only | zero audit FAILs, zero console errors, no overflow, axe clean, LCP/CLS within budget; critic fix list produced | fixes as individual commits |
+| 10 | QA pass 2 | re-shoot, fresh critic again, `a11y-perf` subagent for numbers; "remove one accessory" pass | all scores 8+ with evidence; idle motion confirmed; reduced motion complete | fixes as individual commits |
+| 11 | Close | full chain on final state: `verifier` then `reviewer` then `committer`; `readme-writer` updates run/replace instructions; handoff message lists every placeholder | clean gate: antislop Delivery Gate and design-taste pre-flight both PASS | final commits, no push |
 
-Zero FAILs/zero console errors; critic scores ≥ 8 across Design/Usability/Creativity/Content + dev areas; every placeholder list communicated to the user in the final message; commits clean.
+## Budgets and gates
+
+- LCP < 2.5 s (throttled phone), CLS < 0.05, JS < 300 KB gz, page < 3 MB,
+  loader <= 2.6 s, 60 fps scroll on mid-range phone.
+- Every interactive element does something real; every focus stop visible;
+  Escape closes the menu; no horizontal overflow anywhere.
+- Delivery gate (antislop) and pre-flight (design-taste) run before declaring
+  done; a FAIL blocks delivery.
+
+## Risks and mitigations
+
+- Packet choreography across sections is the hardest build: keep the driver
+  one module, positions computed from section anchor elements (not hardcoded
+  pixels), so it survives responsive changes.
+- Big Shoulders is caps-oriented: check descenders and tracking per size.
+- Dark contrast: muted text on ground and line-strong borders verified with
+  measured ratios, not by eye alone.
+- Scenes must pause offscreen and stop on route change (no leaked loops).
+
+## Owner replaces after build (placeholder register)
+
+Email address, GitHub URL, live demo URLs, the four projects with real work
+and case-study copy, stack groups if they drift from reality. All live in
+`src/data/site.ts` and nowhere else.
