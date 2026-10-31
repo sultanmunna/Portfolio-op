@@ -50,6 +50,7 @@ export function easeOutCubic(t) {
 // Drag-to-orbit with inertia, idle drift, and a click that is only a click
 // when the pointer barely moved. Horizontal drag rotates; vertical drag
 // tilts within a clamp; page scroll passes through (touch-action: pan-y).
+// The view is keyboard-reachable: arrow keys orbit, Enter activates.
 export function attachOrbit(view, group, { requestRender, reduce, ry = -0.45 }) {
   const state = {
     rx: 0.12,
@@ -61,6 +62,26 @@ export function attachOrbit(view, group, { requestRender, reduce, ry = -0.45 }) 
     lastY: 0,
   };
   let onClick = null;
+  view.tabIndex = 0;
+
+  const activate = (event) => {
+    if (onClick) onClick(event);
+    if (reduce && requestRender) requestRender();
+  };
+
+  view.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowLeft") state.ry -= 0.25;
+    else if (event.key === "ArrowRight") state.ry += 0.25;
+    else if (event.key === "ArrowUp") state.rx = THREE.MathUtils.clamp(state.rx - 0.15, -0.45, 0.7);
+    else if (event.key === "ArrowDown") state.rx = THREE.MathUtils.clamp(state.rx + 0.15, -0.45, 0.7);
+    else if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      activate(event);
+      return;
+    } else return;
+    event.preventDefault();
+    if (reduce && requestRender) requestRender();
+  });
 
   view.addEventListener("pointerdown", (event) => {
     state.dragging = true;

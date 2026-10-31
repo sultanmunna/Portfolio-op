@@ -31,10 +31,14 @@ export function initStage(canvas) {
   const exhibits = [];
   const clock = new THREE.Clock();
 
-  function renderExhibit(exhibit) {
+  function culled(exhibit) {
     const rect = exhibit.view.getBoundingClientRect();
-    if (rect.bottom < -40 || rect.top > window.innerHeight + 40) return;
-    if (rect.width < 4 || rect.height < 4) return;
+    if (rect.bottom < -40 || rect.top > window.innerHeight + 40) return null;
+    if (rect.width < 4 || rect.height < 4) return null;
+    return rect;
+  }
+
+  function draw(exhibit, rect) {
     const { camera } = exhibit;
     camera.aspect = rect.width / rect.height;
     camera.updateProjectionMatrix();
@@ -44,29 +48,33 @@ export function initStage(canvas) {
     renderer.render(exhibit.scene, camera);
   }
 
+  // Reduced motion renders on demand: dt=0 keeps drift and animations frozen
+  // while drag, clicks, and static layouts still apply.
   function renderVisible() {
-    exhibits.forEach(renderExhibit);
+    for (const exhibit of exhibits) {
+      const rect = culled(exhibit);
+      if (!rect) continue;
+      if (exhibit.update) exhibit.update(0, 0);
+      draw(exhibit, rect);
+    }
   }
 
   function frame() {
     const dt = Math.min(clock.getDelta(), 0.05);
     const t = clock.elapsedTime;
     for (const exhibit of exhibits) {
-      const rect = exhibit.view.getBoundingClientRect();
-      if (rect.bottom < -40 || rect.top > window.innerHeight + 40) continue;
-      if (rect.width < 4 || rect.height < 4) continue;
+      const rect = culled(exhibit);
+      if (!rect) continue;
       if (exhibit.update) exhibit.update(dt, t);
-      const { camera } = exhibit;
-      camera.aspect = rect.width / rect.height;
-      camera.updateProjectionMatrix();
-      const y = window.innerHeight - rect.bottom;
-      renderer.setViewport(rect.left, y, rect.width, rect.height);
-      renderer.setScissor(rect.left, y, rect.width, rect.height);
-      renderer.render(exhibit.scene, camera);
+      draw(exhibit, rect);
     }
   }
 
   if (!reduce) renderer.setAnimationLoop(frame);
+  if (reduce) {
+    // the canvas is fixed, so painted pixels must follow scroll
+    window.addEventListener("scroll", renderVisible, { passive: true });
+  }
 
   window.addEventListener("resize", () => {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
@@ -75,10 +83,6 @@ export function initStage(canvas) {
   });
 
   return {
-    environment,
-    reduced: reduce,
-    renderVisible,
-
     register(view, factory) {
       const exhibit = factory({
         environment,
@@ -88,13 +92,7 @@ export function initStage(canvas) {
       });
       exhibit.view = view;
       exhibits.push(exhibit);
-      if (reduce) {
-        requestAnimationFrame(renderVisible);
-        const io = new IntersectionObserver((entries) => {
-          if (entries.some((entry) => entry.isIntersecting)) renderVisible();
-        }, { threshold: 0.1 });
-        io.observe(view);
-      }
+      if (reduce) requestAnimationFrame(renderVisible);
       return exhibit;
     },
   };
