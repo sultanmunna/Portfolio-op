@@ -1,4 +1,4 @@
-import { site } from "./data.js";
+const email = "hello@sultanmahmud.dev"; // placeholder, owner must replace
 
 export function initContact() {
   const button = document.getElementById("copy-email");
@@ -7,10 +7,10 @@ export function initContact() {
 
   button.addEventListener("click", async () => {
     try {
-      await navigator.clipboard.writeText(site.email);
+      await navigator.clipboard.writeText(email);
       note.textContent = "copied";
     } catch {
-      note.textContent = site.email;
+      note.textContent = email;
     }
     setTimeout(() => {
       note.textContent = "";

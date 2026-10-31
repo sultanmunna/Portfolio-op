@@ -30,7 +30,8 @@ Open http://localhost:8000. Any static server works.
 ## Placeholders to replace
 
 - Copy in `index.html`: name, projects, museum labels
-- Email and GitHub in `assets/js/data.js` (used by the contact section)
+- Email in `assets/js/contact.js` (used by the copy button); GitHub links in
+  `index.html` — two locations on purpose: hrefs can't be injected without JS
 - Live URLs: each vitrine's links block in `index.html` shows "live soon"
   until a link is added there
 - Domain: canonical, og:url, twitter:image in `index.html`, plus `robots.txt`
