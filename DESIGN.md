@@ -1,337 +1,274 @@
 # DESIGN.md
 
-Design contract for the Sultan Mahmud portfolio. Built with the awwwards method
-(concept first, art direction second) and filtered through antislop (during mode).
-Every major decision carries a one-line reason (R-31). Implementation must obey
-this document; changes to direction happen here first.
+Design contract, rebuild #2. Rebuild #1 (dark, route-spine, amber) was rejected
+wholesale by the owner on 2026-10-31 and is scraped. This document replaces it.
+Stack is plain HTML + CSS + JS + Three.js, no framework, no build step.
+Direction "Gallery light" was chosen by the owner from three options with
+previews; do not drift back toward dark ground, amber accents, or condensed
+industrial display type.
 
 ## 1. Brief
 
 - Subject: Sultan Mahmud, backend developer. FastAPI and applied AI.
-- Audience: recruiters, hiring managers, engineering leads, other developers.
-- Job of the site: get interviews. With no professional experience yet, the four
-  projects carry the page, so the projects section is the centerpiece.
-- Structure (owner's requirement, fixed): introduction, tech stack, four project
-  boxes (GitHub and live icons on top, title, description, a beautiful scene
-  below), then contact.
-- Assets provided: none. Copy and projects are honest placeholders (section 7).
-- Language: English. Theme: dark, confirmed by owner ("Dark, living systems").
+- Audience: recruiters, hiring managers, engineering leads.
+- Job of the site: get interviews. The four projects carry the page.
+- Structure (owner requirement, unchanged): introduction, tech stack, four
+  project boxes (GitHub and live icons on top, title, description, a beautiful
+  scene below), then contact.
+- Assets: none. Projects, email, and links are honest placeholders flagged in
+  `assets/js/data.js`.
 
 ## 2. Design read and dials
 
 > Reading this as: single-page developer portfolio for recruiters and
-> engineering leads, in a dark living-systems language (infrastructure at
-> night), dial ENERGY 3 / RHYTHM 3 / MOTION 3.
+> engineering leads, in a white-gallery language (invisible work made
+> physical), dial ENERGY 2 / RHYTHM 3 / MOTION 2.
 
-- ENERGY 3: poster-scale type, committed dark identity, one bold accent.
-- RHYTHM 3: every section uses a different layout family (section 5).
-- MOTION 3, scoped: the only scroll-choreographed system is the packet
-  (section 3). Scenes are state machines that play when in view. No parallax,
-  no pin-spam, no template reveals. Everything honors `prefers-reduced-motion`.
-- design-taste mapping: DESIGN_VARIANCE 8 / MOTION_INTENSITY 7 / VISUAL_DENSITY 3.
+- ENERGY 2: calm, expensive, precise. The room is quiet; the exhibits move.
+- RHYTHM 3: five sections, five different layout families (section 5).
+- MOTION 2: entrance reveals, hover states, and the exhibits' idle life plus
+  drag. No scroll choreography, no parallax, no smooth-scroll library.
+  Everything honors `prefers-reduced-motion`.
+- design-taste mapping: DESIGN_VARIANCE 7 / MOTION_INTENSITY 5 / VISUAL_DENSITY 3.
 
 ## 3. Concept
 
-Three candidates from three territories, scored O / F / Fe / P (originality,
-fit, feasibility, portability; lower P is better):
-
-| | A. The quiet court (name) | B. The site is its own API (material) | C. One round trip (process) |
-|---|---|---|---|
-| Idea | Sultan means authority: the site is a court at night, the visitor a petitioner, the work heard not shown | Sections are routes, meta is headers, the 404 is a real response | Your visit is one request: it arrives, passes through the machinery, visits four services, and returns to you as the reply |
-| Layout | chambers along a corridor | documentation as page | a route spine with stations; projects as stacked service cases with live scenes |
-| Motion | processions | resolves | flows like current, settles on arrival |
-| Scores | 4 / 3 / 3 / 2 | 3 / 4 / 5 / 3 | 4 / 5 / 4 / 2 |
-
-Pick: **C. One round trip**. Highest fit (it is literally how backend work
-works) and the most generative: it dictates the spine layout, the packet
-motion, per-project live scenes, the contact section as the returning reply,
-and the 404 as a failed request. B lives mostly in labels; A drifts toward
-ornament. Steals: from B, the designed 404 as an honest failed response and
-request-state language in scene readouts; from A, nothing structural.
-
-Concept card:
+**The gallery of invisible work.** A backend cannot be photographed, so each
+project is shown as a museum exhibit: a physical, draggable Three.js object
+whose mechanism IS the project's mechanism. Museum labels carry the data
+(materials = stack, year, placement). The visitor walks a white room; the work
+is on plinths.
 
 ```
-Idea:        you are the client: your visit is one request that leaves you,
-             travels through Sultan's machinery, and returns as a reply
-Metaphor:    the request lifecycle of a backend system
-Signature:   the packet: one amber pulse that descends a persistent route
-             spine as you scroll; every section is a station it passes and
-             each project scene runs as it arrives
-Emotion:     calm, ordered motion: "his systems run, and I can watch them run"
-Motion verb: flows like current, settles on arrival
-Screenshot:  the packet crossing a project scene mid-sequence, the spine lit
-             behind it
+Idea:        the projects are exhibits in a small white gallery; each object
+             moves the way the backend moves
+Metaphor:    museum vitrine: glass case, label, plinth
+Signature:   the four draggable GL exhibits, one per project
+Emotion:     calm curiosity: "I can touch the invisible thing"
+Motion verb: settles like a gallery piece; drifts, then rests
+Screenshot:  a chrome-and-cobalt exhibit mid-drag inside a white vitrine,
+             museum label beneath
 ```
 
-Genericness test: a generic model lands at dark hero + gradient glow + tech
-chips + screenshot cards + contact form. This design has none of those: no
-glow washes, tech as labeled stations on a route, live SVG scenes instead of
-screenshots, mailto plus copy instead of a dead form. Passes.
+Genericness test: a generic model lands at dark hero + gradient + tech chips +
+screenshot cards. This is a white room with hairlines, museum labels, and
+physically-based draggable objects. Passes.
 
 ## 4. Art direction
 
-### Palette (6 roles, one accent)
+### Palette (5 roles, one accent)
 
 | Role | Value | Reason |
 |---|---|---|
-| ground | `#0C0E12` | deep blue-black: night machinery; cool so the accent and ivory read as lit |
-| ground-2 | `#13161D` | scene stages and elevated surfaces, one step up |
-| ink | `#ECE7DC` | warm ivory: the human voice, warm against the cool ground |
-| muted | `#9AA2B1` | cool slate for secondary text, passes AA on ground |
-| line | ivory at 14% | hairlines, structural; `line-strong` (ivory at 32%) borders interactive elements so boundaries pass 3:1 |
-| accent | `#E8A33D` | signal amber: the packet, live states, focus ring. Amber reads as current and heat without the acid-green or purple tells; warm-on-cool is the page's one deliberate contrast |
+| ground | `#F7F5F0` bone | gallery wall white; warm enough to feel printed, not sterile |
+| panel | `#FFFFFF` | vitrine glass panels behind each exhibit, separated from the wall by hairlines |
+| ink | `#141311` | near-black text; pure black is banned |
+| muted | `#6B675F` | warm gray secondary text, AA on bone |
+| line | ink at 14% (hairlines), 40% (`line-strong`) for interactive boundaries | structure by line weight, no shadows |
+| accent | `#002FA7` International Klein Blue | a museum-famous blue; links, focus rings, labels of live states, and tints inside the GL objects. The one deliberate color on a monochrome page |
 
-No other colors exist. Scenes may dim the accent (alpha), never add hues.
-Pure black and white are banned.
+No other hues. GL materials are chrome, glass, bone clay, and IKB tints only.
 
-### Typography (3 roles, third one tiny and functional)
+### Typography (2 families)
 
 | Role | Face | Reason |
 |---|---|---|
-| display | Big Shoulders (Google, variable) | condensed industrial lettering: infrastructure plates and vessels; the machinery world in type form |
-| text | Host Grotesk (Google) | clean, slightly humanist; quiet enough to let display lead, not Inter |
-| mono | DM Mono (Google) | third voice for real data only: station labels, scene readouts, status language; never for headings or eyebrows |
+| display + text | Switzer 400/500/600 (Fontshare, self-hosted woff2) | neutral Swiss grotesk, closest free cut to the neo-grotesks that carry real galleries; one family, hierarchy by weight |
+| labels | Fragment Mono 400 (Google, self-hosted) | museum label voice: numbers, years, materials, links. Mono only where real data lives |
 
-- Fluid scale: `--t-mega: clamp(4rem, 1.2rem + 13vw, 15rem)`,
-  `--t-xl: clamp(2.4rem, 1.4rem + 4.6vw, 5.5rem)`,
-  `--t-l: clamp(1.6rem, 1.25rem + 1.8vw, 2.75rem)`,
-  `--t-body: clamp(1rem, 0.95rem + 0.2vw, 1.125rem)`, `--t-s: 0.875rem`,
-  `--t-xs: 0.75rem` (mono meta).
-- Display: leading 0.85 to 0.9, tracking -0.02em, optical alignment via small
-  negative indents, `text-wrap: balance`, descender room on split lines.
-- Body: 16 to 18 px, measure max 60ch. Mono meta: 12 to 14 px, tabular numerals.
-- Mono scope rule (R-06): mono appears only where real state or data is shown.
+- Scale: `--t-hero: clamp(3.4rem, 1rem + 9.5vw, 10.5rem)` (weight 600,
+  tracking -0.035em, leading 0.98), `--t-xl: clamp(2.1rem, 1.2rem + 3.6vw,
+  4.6rem)` (weight 500), `--t-l: clamp(1.35rem, 1.1rem + 1.2vw, 1.9rem)`
+  (weight 400, statement), `--t-body: 1.0625rem`, labels 11 to 12px mono.
+- Body measure 60ch max. No uppercase display; labels use normal case.
 
-### Grid and frame
+### Grid, room and vitrines
 
 - 12 fluid columns, gutter `clamp(16px, 2.5vw, 32px)`, outer margin = gutter.
-- Hang everything on three vertical lines: col 1, col 5, col 9.
-- Four-corner frame: name top-left (link home), nav top-right (Work, Stack,
-  Contact), packet station readout bottom-left (real state, section 3),
-  "Email me" bottom-right (real mailto). Corner zones stay empty otherwise;
-  the frame steps aside on scroll down and returns on scroll up.
-- Radius rule: all sharp (0). Elevation is line weight, not shadow. Interactive
-  elements are rectangular with `line-strong` borders.
+- Hang on three lines: col 1, col 5, col 9.
+- Header: name top-left (link home), nav top-right (Work, Stack, Contact),
+  mono. Footer doubles as contact. Corner-free; no fixed chrome.
+- Vitrines: each project box is a white panel (`panel`), 1px hairline border,
+  sharp corners, museum label row at the bottom edge (mono, hairline above).
+- Radius: 0 everywhere. Elevation: none; separation is hairline + white panel.
 
 ### Motion language
 
-- One clock: `gsap.ticker`. Lenis smooth scroll on pointer devices; native
-  scroll on touch. No `requestAnimationFrame` loops, no scroll listeners.
-- Eases: travel `none` or `power1.inOut`, arrivals `power3.out`, live breathing
-  `sine.inOut`. Durations: micro 250 to 400 ms, reveals 0.6 to 0.9 s, stagger
-  40 to 70 ms. Big things move slower than small things.
-- Hover, one treatment per role: primary targets flood or roll (label slides
-  inside a clipped line, fill floods); utility links change color only; the
-  packet nudges toward hovered interactive elements.
-- Idle: the packet breathes softly at rest; scenes loop quietly while in view
-  and pause offscreen. The concept never fully freezes.
-- Reduced motion: no smooth scroll, no scrub, no loader theatrics, scenes show
-  their designed still frame, the packet sits as a static marker on the spine,
-  all content fully visible.
+- Entrance reveals: IntersectionObserver adds `.is-in`; CSS transitions
+  (opacity, 24px rise, 0.7s cubic-bezier(0.16, 1, 0.3, 1), 60ms stagger).
+- Hover: links draw an underline; buttons flood IKB; exhibit canvases show
+  `cursor: grab` then `grabbing`.
+- Exhibits: slow idle drift (rotation + float); pointer drag rotates with
+  inertia. Idle motion is the concept breathing; reduced motion stops drift
+  and float, drag stays (user-initiated).
+- No smooth-scroll library: native scrolling. No scroll listeners; observers
+  only.
 
-### The packet (signature system)
+### WebGL rules
 
-One driver module owns it. Input: scroll progress. Outputs: packet position
-along the spine, spine fill, the corner station readout, and scene activation
-windows. Idle input: time (the breathing pulse). The spine is a real vertical
-line on the col-1 axis, drawn per section; the packet travels it, dips into
-each project scene while that case is in view, and completes the loop at the
-contact section where the reply "returns" to the visitor.
+- ONE `WebGLRenderer`, ONE fixed transparent canvas behind the content.
+  Each visible vitrine reserves a rect; the renderer draws each exhibit into
+  its rect with `setScissor`. Exhibits render only while on screen.
+- Content sits above the canvas; vitrine pointer events are captured by each
+  vitrine's overlay div and forwarded to its exhibit controller, so text stays
+  selectable and the GL canvas never eats clicks.
+- Lighting: `RoomEnvironment` PMREM environment (vendored with three) plus one
+  directional key. Tone mapping ACES, dpr capped at 2 (1.5 on small screens).
+- Each exhibit is a self-contained module returning `{ update(dt), dispose() }`
+  built on shared helpers (`gl/helpers.js`): renderer singleton, materials,
+  drag controller. No per-exhibit render loops.
+- Reduced motion: no idle drift/float; a single frame renders per state change;
+  drag still works.
 
-## 5. Composition plan (five families, no repeats)
+## 5. Composition plan (five families)
 
-### 5.1 Hero (poster family)
+### 5.1 Arrival (poster)
 
 ```
 ┌──────────────────────────────────────────────────────┐
 │ sultan mahmud                       work stack contact│
 │                                                      │
-│ SULTAN                                               │   mega display,
-│ MAHMUD                                               │   two lines, col 1
+│ Sultan Mahmud builds                                 │   hero type, cols 1-10,
+│ the systems you never see.                           │   ink on bone
 │                                                      │
-│ I build the part you never see.                      │   role line, col 5
-│ Backend engineer. FastAPI and applied AI.            │
-│                                                      │
-│ ● station 00 / arrival              email me         │   corner readout + action
+│ Backend engineer. FastAPI and applied AI.   (mono)   │   col 5
 └──────────────────────────────────────────────────────┘
 ```
 
-Focal: the name. Loader hands off here: the spine draws in, the packet is
-born at the name. Mobile: name re-tuned via clamp, corners collapse to a top
-bar plus full-screen menu overlay (focus-trapped, Escape closes).
+Focal: the type. Pure poster, no GL here (the exhibits are the one signature;
+restraint is written down). Mobile: type re-tuned via clamp, nav collapses to
+a simple row (three short mono links fit at 390px; no hamburger needed).
 
-### 5.2 Introduction (statement family)
+### 5.2 Introduction (statement)
+
+```
+│ The work I show below is invisible on purpose:      │   t-l statement,
+│ servers, queues, retrievers. You cannot screenshot  │   cols 5-12,
+│ a backend. So it is shown the only honest way: as    │   hung on col 5
+│ machines that move the way the real ones move.       │
+```
+
+### 5.3 Materials (tech stack, data family)
+
+```
+│ MATERIALS          runtime     Python 3.12, Pydantic, uv
+│ (mono heading)     web layer   FastAPI, ASGI, Uvicorn, OpenAPI
+│                    data        PostgreSQL, pgvector, Redis, SQLAlchemy
+│                    ai          embeddings, OpenAI-compatible APIs, Ollama
+│                    ops         Docker, GitHub Actions, pytest, Prometheus
+```
+
+Left: mono heading "Materials" plus one line. Right: five rows, hairline
+separated, group in ink, role in muted, tools in ink. Desktop two-column;
+mobile stacked rows.
+
+### 5.4 Exhibits (the four boxes, vitrine family, the centerpiece)
+
+Each project, one per "wall":
 
 ```
 ┌──────────────────────────────────────────────────────┐
-│ │ (spine)                                            │
-│ │   I am Sultan Mahmud. I build backends: FastAPI    │   t-l paragraph,
-│ │   services, data models, and the AI systems        │   cols 2 to 10,
-│ │   behind them. No company has hired me for it      │   no eyebrow
-│ │   yet: what I have instead are systems I           │
-│ │   designed, built, broke, and fixed myself.        │
-│ │                                                    │
-│ ● station 01 / the engineer                          │
-└──────────────────────────────────────────────────────┘
-```
-
-Focal: the statement. Honest about no experience; the voice carries it.
-Mobile: full-width text, same rhythm.
-
-### 5.3 Machinery, the tech stack (diagram family, asymmetric pair)
-
-```
-┌──────────────────────────────────────────────────────┐
-│ │ Machinery        │  the route, top to bottom:      │
-│ │ What I run the   │  ─ runtime     Python, Pydantic │
-│ │ systems with.    │  ─ web layer   FastAPI, ASGI    │
-│ │                  │  ─ data        PostgreSQL,      │
-│ │                  │    pgvector, Redis, SQLAlchemy  │
-│ │                  │  ─ ai          embeddings, LLM  │
-│ │                  │    tooling, evaluation          │
-│ │                  │  ─ ops         Docker, CI,      │
-│ │                  │    pytest, observability        │
-│ ● station 02 / the machinery                          │
-└──────────────────────────────────────────────────────┘
-```
-
-Left (cols 1 to 4): title plus one line. Right (cols 5 to 12): the stack as
-stations along the spine, each group a mono label and its tools in text with
-a plain-language role ("FastAPI: the doors"). No chips, no logo wall, no
-grid texture. The packet stops at each group as you scroll. Mobile: stacked,
-spine on the left edge.
-
-### 5.4 Work (stacked cases family, the centerpiece)
-
-Four full-width cases, each:
-
-```
-┌──────────────────────────────────────────────────────┐
-│ ASK THE ARCHIVE              [github] [live]         │  title left, icons right,
-│ A RAG service: ask a document archive in plain       │  44px targets
-│ language, get answers with sources.                  │
+│ 01                                    [gh] [live ↗] │  icons top-right, 44px
+│ ASK THE ARCHIVE                                      │  title, t-xl
+│ Ask a document archive in plain language, get        │  one-sentence
+│ answers with the sources attached.                   │  description
 │ ┌──────────────────────────────────────────────────┐ │
-│ │  scene: chunks fly into a vector field, three    │ │  live SVG stage,
-│ │  neighbors light up, an answer assembles         │ │  ground-2, 16:7
-│ │  ( send a query )                                │ │  real button
+│ │                                                  │ │
+│ │      GL vitrine: glass lens + drifting shards,   │ │  white panel,
+│ │      drag to orbit, shards align behind lens     │ │  16:9, the exhibit
+│ │                                                  │ │
 │ └──────────────────────────────────────────────────┘ │
+│ no. 01 · materials: FastAPI, PostgreSQL, pgvector    │  museum label row
+│        · 2026 · placement: personal project          │  (mono, hairline)
 └──────────────────────────────────────────────────────┘
 ```
 
-- Icons: GitHub mark and external-link glyph (Phosphor set, relevance: the
-  standard forge and outbound marks). Live link renders only if a URL exists;
-  otherwise a muted "demo soon" label, never a dead control.
-- The scene is the proof: no screenshots exist for backend work, so each case
-  shows its system running (spec in section 6). The "send" button injects a
-  real interaction into the scene.
-- Hover: the title's inner label rolls; the scene brightens one step; the
-  packet dips in. Whole case is keyboard-reachable; scenes are labeled.
-- Mobile: case stacks (title, icons row, description, scene, button); scenes
-  scale via SVG viewBox; spacing re-tuned.
+- GitHub/live icons top-right as the owner specified. Live renders only with a
+  URL; otherwise mono text "live soon", never a dead control.
+- The exhibit IS the "extra beautiful scene" below: draggable, idle-drifting,
+  project-specific mechanism (section 6).
+- Mobile: same order; canvas 4:3; drag works with touch (single-pointer
+  rotate); label row wraps.
 
-### 5.5 Contact (finale family)
+### 5.5 The reply (contact, finale family)
 
 ```
-┌──────────────────────────────────────────────────────┐
-│ │  YOUR REQUEST LEAVES.                              │  display line,
-│ │  MY REPLY COMES BACK.                              │  cols 1 to 12
-│ │                                                    │
-│ │  email me        copy address      github          │  one email intent,
-│ │                                                    │  three real actions
-│ │  colophon: Big Shoulders, Host Grotesk, DM Mono.   │  small print,
-│ │  No trackers. 2026.                                │  real only
-└──────────────────────────────────────────────────────┘
+│ Take a card.                                        │  t-xl display line
+│                                                     │
+│ email me (IKB button)   copy address   github       │  one email intent
+│                                                     │
+│ colophon: Switzer, Fragment Mono, three.js.         │  mono small print
+│ No trackers. 2026.                                  │
 ```
 
-Focal: the display line. The packet completes the loop here and settles into
-the period of the last line. Actions: mailto (primary), copy-address button
-with real "copied" feedback, GitHub link. No form (a form with no backend is
-a dead control). Mobile: stacked actions, 44px targets.
+The packet of build #1 is gone; the closing gesture is "take a card" (copy
+address), executed plainly. mailto is primary.
 
-### 5.6 Inner pages
+### 5.6 404
 
-- `/work/[slug]` case page per project: title, one-line summary, meta (role,
-  year, stack, links), the scene at full width, then context, idea, craft,
-  outcome from the placeholder content, next-project link with a shared
-  element transition (the case title grows into the next title).
-- 404: the round trip failing honestly: "404: no service at this route" in
-  the system's voice, with the way back. Carries the concept.
+"Empty plinth": a lone hairline plinth drawing with "404: nothing on this
+plinth." plus the way back. Static SVG, carries the concept.
 
-## 6. Scene spec (four live systems)
+## 6. Exhibit spec (four mechanisms)
 
-All scenes: SVG on `ground-2`, one accent, mono readouts, driven by the one
-GSAP clock, IntersectionObserver-gated (pause offscreen), `aria-label`
-describing what happens, real button, and a designed reduced-motion still
-frame (final state, captioned). Readouts print the visitor's own real elapsed
-time, never invented metrics.
+All exhibits: white vitrine panel, studio lighting, chrome/glass/bone-clay/IKB
+materials only, idle drift, drag-to-orbit with inertia, dispose on teardown.
 
-1. **Ask the Archive** (RAG service). Left: a source document splits into
-   chunks; chunks fly into a scattered dot field (the vector space); a query
-   pulse enters; the three nearest neighbors glow and draw lines to the query;
-   an answer assembles on the right. Button: "send a query" replays the
-   retrieval with a fresh query pulse.
-2. **Taskforge** (async job queue). Jobs drop onto an intake rail; three
-   worker bays pick tiles, fill a progress stroke, and release them to a done
-   column; a backlog meter breathes; an occasional job retries (dashed amber,
-   honest about failure). Button: "enqueue a job" adds one.
-3. **Gatehouse** (API gateway, rate limiting). Request pulses stream through
-   a gate; a token bucket above refills segment by segment; under-limit
-   requests pass and exit "200"; over-limit ones deflect downward, outlined,
-   "429". Button: "burst" sends a burst and sheds some, honestly.
-4. **Agentbench** (AI agent orchestrator). A plan node emits three steps; the
-   steps fan out to tool nodes (retriever, sql, http) that light in turn;
-   results flow back and an answer assembles; a mono trace prints real
-   elapsed milliseconds. Button: "run a task" re-runs the plan.
+1. **Ask the Archive**: a glass lens (transmission disc with chrome rim)
+   floating over ~90 small tetrahedral shards scattered in a cloud. Idle:
+   shards drift slowly. Interaction: dragging orbits the whole piece; a click
+   pulses the lens: shards briefly align into a neat lattice behind it, then
+   relax. Reads as: retrieval focusing scattered documents.
+2. **Taskforge**: three interlocking gears (one chrome, two bone clay) turning
+   at different speeds; small clay blocks ride the teeth around and drop
+   through a slot. Reads as: jobs picked up, worked, completed.
+3. **Gatehouse**: a chrome valve wheel atop a short pipe; a stream of small
+   bone beads flows through. Idle: steady flow. Click: the valve turns and
+   throttles the stream: beads back up and a few deflect (IKB) and fall away.
+   Reads as: rate limiting, honestly.
+4. **Agentbench**: a small orrery: a chrome hub, three bone nodes orbiting on
+   hairline-thin rings (retriever, sql, http), IKB pulses traveling node to
+   hub. Reads as: tools orchestrated around a plan.
 
 ## 7. Content rules and placeholder register
 
-Voice: plain, specific, first person, sentence case, a little dry confidence.
-Under-20-word hero line. No em or en dashes anywhere visible. Banned:
-elevate, seamless, unleash, cutting-edge, passionate, "where X meets Y".
-One label per intent: "Email me" everywhere. Numbers appear only as real
-visitor-session data; no stats, no testimonials, no client logos.
-
-Every invented fact is `placeholder: true` in `src/data/site.ts` with a top
-comment listing assumptions, mirrored in the final handoff message:
-
-- Email `hello@sultanmahmud.dev` (derived from the name; owner must replace).
-- GitHub URL `https://github.com/sultanmahmud` (owner must replace).
-- Four projects, invented for the owner to replace with real work:
-  Ask the Archive (FastAPI, pgvector, retrieval), Taskforge (queue, Redis,
-  workers), Gatehouse (gateway, rate limiting), Agentbench (agent
-  orchestration). Titles evocative but plausible; no real company names.
-- Live links: omitted until the owner provides URLs ("demo soon" label shown).
-- Stack groups (section 5.3) are the owner's presumed tools, marked
-  placeholder in `site.ts` for easy editing.
-- Location: omitted (unknown). Availability: omitted (unknown).
+Voice: plain, specific, first person, museum-label dryness. No em or en
+dashes in visible text. No stats, no testimonials, no invented credentials.
+One label per intent ("email me" everywhere). Every invented fact is flagged
+in `assets/js/data.js` (`placeholder: true`) and listed in the handoff
+message: email `hello@sultanmahmud.dev`, GitHub `https://github.com/sultanmahmud`,
+the four projects, no live URLs yet ("live soon" shown). Stack groups are the
+owner's presumed tools. Location and availability omitted.
 
 ## 8. Anti-slop purpose register (R-31 one-liners)
 
-- Dark theme: the subject is invisible machinery made visible; night is where
-  systems run (owner-confirmed direction, R-21 developer reason).
-- One amber accent: a single signal color means "live" stays unambiguous (R-29).
-- Big Shoulders display: infrastructure lettering for a machinery concept (R-06).
-- DM Mono scope: only real states and data; never headings (R-06).
-- All-sharp radius with hairlines: engineering plates; hierarchy by line
-  weight, not shadow (R-11, R-12).
-- Spine and packet: the identity motif, repeated in hero, readout, scenes,
-  contact, and 404 (Part 3 identity motif).
-- Scenes instead of screenshots: no product UI exists to shoot; diagrams of
-  real systems are the honest stand-in (R-22, C-5).
-- mailto and copy instead of a form: every control does something real (R-26).
-- Loader: a short handshake that reflects real loading, max 2.6 s, then the
-  packet is born (continuity, not decoration).
-- No scroll cues, no decorative dots, no eyebrow badges, no version labels.
+- White gallery: total contrast to the rejected dark build; galleries are
+  where invisible work gets made visible (owner-chosen direction).
+- IKB accent: one museum-grade blue on a monochrome page; "live" and links
+  stay unambiguous (R-29).
+- Switzer: neutral Swiss grotesk carries gallery authority without the
+  rejected condensed-industrial voice (R-06).
+- Fragment Mono scope: museum labels only, real data only (R-06).
+- No GL in the hero: the exhibits are the single signature moment; a second
+  GL stage would dilute them (one focal point per screen).
+- Vitrine boxes instead of cards: the owner's box structure restated in the
+  concept's own language (C-3).
+- "live soon" text instead of a dead link icon (R-26, R-23).
+- No scroll-jacking, no smooth-scroll library: the room is calm; motion
+  belongs to the objects (R-19, MOTION 2).
 
 ## 9. Quality bar
 
-- Throttled mobile LCP under 2.5 s, CLS under 0.05, JS under 300 KB gzipped
-  (no WebGL keeps this easy), page under 3 MB, loader done in 2.6 s.
-- Zero serious or critical axe violations; skip link first; every focus stop
-  visible (2 px amber ring); keyboard closes the menu with Escape.
-- No horizontal overflow at 390 px; tap targets 44 px; hover never required.
-- `idleMotion` true (the packet breathes); reduced-motion pass complete.
-- QA on the production build with shoot.mjs and audit.mjs, then a fresh
-  critic subagent scores it evidence-only, two full passes, every score 8+.
-- Final pass cuts the weakest accessory; hover, focus and press states survive.
+- LCP under 2.5s on throttled mobile (three.js is lazy: the GL canvas boots
+  after first paint; exhibits boot when scrolled near), CLS under 0.05, no
+  layout property animations, total page under 3MB with vendored three.
+- Zero serious/critical axe violations; skip link; visible IKB focus ring;
+  keyboard-operable everything; Escape not required (no overlay).
+- No horizontal overflow at 390px; 44px tap targets; drag never traps scroll
+  (touch-action pan-y on canvases; drag is horizontal-rotate only... rotated
+  via pointer with `touch-action: none` inside the vitrine only).
+- Idle motion true (exhibits drift) unless reduced motion; reduced-motion pass
+  complete (static exhibits, all content visible).
+- QA on the served static build: screenshots desktop + mobile + reduced
+  motion, console clean, then a fresh critic subagent scores evidence-only;
+  every score 8+.
