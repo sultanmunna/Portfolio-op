@@ -95,3 +95,5 @@ ViewBox unchanged; strokes are vector hairlines. Fits 390 px viewports
 
 The hero's fold has one in-voice, keyboard-reachable affordance, the 404
 plinth carries its page, and the contract drawing matches the build.
+
+Deviation (2026-11-01): the owner approved the blocked motion half (one-shot cube drop, 9377b58); ux-critic #6's no-js fallback landed as c9c5cd8 (planner gap); the review caught the scaled strokes rendering ~1.67px, corrected by non-scaling-stroke in f530b3e.
