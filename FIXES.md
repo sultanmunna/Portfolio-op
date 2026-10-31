@@ -51,7 +51,7 @@ Fix one phase, verify, commit, stop. Do not start the next phase unless asked.
 | 7 | [phase-7-rescore.md](fixes/phase-7-rescore.md) | Fresh jury re-score + close-out | done (new blind card 7.2 vs 7.0, no category dropped; evidence in .jury/127.0.0.1-4400-rescore/; the home h-01/h-03 noHoverChange flags are off-target rig crops — both controls' hovers verified directly in the phase 1 evidence) |
 | 8 | [phase-8-settle-tail.md](fixes/phase-8-settle-tail.md) | First-screen settle tail: arm reveals/contact before the GL graph + preload two first-paint faces | done c4e16c0 + b183cb2 (reveals armed before the gl graph; both first-paint faces preloaded) |
 | 9 | [phase-9-exhibit-stills.md](fixes/phase-9-exhibit-stills.md) | Exhibit stills: lens reframe + ink shard cloud, seat Taskforge blocks, ink Gatehouse pipe, touch hints in label rows | done 2ff42af + 1c9c128 + bdf8c9d + bdabd6b + 49d82eb (lens reframed + ink cloud, blocks seated + train centered, pipe inked, keyboard contract in label rows, contract palette synced) |
-| 10 | [phase-10-composition-polish.md](fixes/phase-10-composition-polish.md) | Hero cue to #work + 404 plinth poster scale | planned (pass-4 critique loop) |
+| 10 | [phase-10-composition-polish.md](fixes/phase-10-composition-polish.md) | Hero cue to #work + 404 plinth poster scale | done 70534aa + 4c7c42e + 9377b58 + c9c5cd8 (hero cue + contract §5.1 sync; 404 plinth poster scale; one-shot cube drop per owner decision; no-js vitrine fallback closing a planner gap from ux-critic #6) |
 
 Run order 1 → 10. Phase 5 stays blocked until the owner answers its question
 register; everything else is unblocked. Pass-4 evidence:
