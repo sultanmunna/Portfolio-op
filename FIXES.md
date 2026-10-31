@@ -44,7 +44,7 @@ Fix one phase, verify, commit, stop. Do not start the next phase unless asked.
 |---|---|---|---|
 | 1 | [phase-1-a11y-hover.md](fixes/phase-1-a11y-hover.md) | Visible focus + hover feedback (A-01, A-03, A-04) | done b246ed7 (deviation: the 4 flags were focus landing on unrevealed vitrines mid smooth-scroll, not missing styles, so 6d4543a also adds instant keyboard scroll + focus force-reveal) |
 | 2 | [phase-2-exhibits.md](fixes/phase-2-exhibits.md) | Valve color bug + exhibit materiality (A-02, critic d-04/d-05) | done 9bf6871 (deviation: block drops are gated to the ring's bottom arc and funnel x to −0.85 instead of snapping, which would drop them through the gear disc; base plate sits below the ring sweep, not the file's example y) |
-| 3 | [phase-3-seo.md](fixes/phase-3-seo.md) | Canonical, twitter card, robots, sitemap, 404 h1 (A-05) | pending |
+| 3 | [phase-3-seo.md](fixes/phase-3-seo.md) | Canonical, twitter card, robots, sitemap, 404 h1 (A-05) | done 91d2889 |
 | 4 | [phase-4-polish.md](fixes/phase-4-polish.md) | Orphan "of.", contact gap, muted contrast (A-07, A-08, A-09) | pending |
 | 5 | [phase-5-content.md](fixes/phase-5-content.md) | Project depth + first live link — OWNER INPUT REQUIRED | blocked |
 | 6 | [phase-6-hygiene.md](fixes/phase-6-hygiene.md) | .gitignore, PLAN.md, data.js, DESIGN.md dead specs | pending |
