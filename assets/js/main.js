@@ -3,11 +3,6 @@ import { createLens } from "./gl/exhibits/lens.js";
 import { createGears } from "./gl/exhibits/gears.js";
 import { createValve } from "./gl/exhibits/valve.js";
 import { createOrrery } from "./gl/exhibits/orrery.js";
-import { initReveals } from "./reveal.js";
-import { initContact } from "./contact.js";
-
-initReveals();
-initContact();
 
 const canvas = document.getElementById("gl");
 const stage = initStage(canvas);
