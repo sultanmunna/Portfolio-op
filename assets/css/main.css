@@ -48,7 +48,7 @@
   --sp-n: clamp(110px, 18vh, 200px);
   --sp-a: clamp(150px, 24vh, 260px);
 
-  --t-hero: clamp(3.1rem, 1rem + 8.5vw, 8rem);
+  --t-hero: clamp(3.1rem, 1rem + 9.5vw, 10rem);
   --t-xl: clamp(2.1rem, 1.2rem + 3.6vw, 4.2rem);
   --t-l: clamp(1.35rem, 1.1rem + 1.2vw, 1.9rem);
   --t-body: 1.0625rem;

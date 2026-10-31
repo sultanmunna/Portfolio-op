@@ -76,7 +76,7 @@ No other hues. GL materials are chrome, glass, bone clay, and IKB tints only.
 | display + text | Switzer 400/500/600 (Fontshare, self-hosted woff2) | neutral Swiss grotesk, closest free cut to the neo-grotesks that carry real galleries; one family, hierarchy by weight |
 | labels | Fragment Mono 400 (Google, self-hosted) | museum label voice: numbers, years, materials, links. Mono only where real data lives |
 
-- Scale: `--t-hero: clamp(3.1rem, 1rem + 8.5vw, 8rem)` (weight 600,
+- Scale: `--t-hero: clamp(3.1rem, 1rem + 9.5vw, 10rem)` (weight 600,
   tracking -0.035em, leading 1.02), `--t-xl: clamp(2.1rem, 1.2rem + 3.6vw,
   4.2rem)` (weight 500), `--t-l: clamp(1.35rem, 1.1rem + 1.2vw, 1.9rem)`
   (weight 400, statement), `--t-body: 1.0625rem`, labels 11 to 12px mono.
