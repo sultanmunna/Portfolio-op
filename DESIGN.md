@@ -234,11 +234,13 @@ materials only, idle drift, drag-to-orbit with inertia, dispose on teardown.
 
 Voice: plain, specific, first person, museum-label dryness. No em or en
 dashes in visible text. No stats, no testimonials, no invented credentials.
-One label per intent ("email me" everywhere). Every invented fact is flagged
-in `assets/js/data.js` (`placeholder: true`) and listed in the handoff
-message: email `hello@sultanmahmud.dev`, GitHub `https://github.com/sultanmahmud`,
-the four projects, no live URLs yet ("live soon" shown). Stack groups are the
-owner's presumed tools. Location and availability omitted.
+One label per intent ("email me" everywhere). Copy lives in index.html (the
+single page is the single source); `assets/js/data.js` holds the email and
+GitHub values that JS needs. Every invented fact is flagged there and listed
+in the handoff message: email `hello@sultanmahmud.dev`, GitHub
+`https://github.com/sultanmahmud`, the four projects, no live URLs yet
+("live soon" shown). Stack groups are the owner's presumed tools. Location
+and availability omitted.
 
 ## 8. Anti-slop purpose register (R-31 one-liners)
 
