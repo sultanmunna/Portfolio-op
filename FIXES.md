@@ -1,0 +1,54 @@
+# FIXES.md
+
+Phased fix plan from the 2026-10-31 jury + antislop audit of the gallery-light
+build (branch `First`). Evidence lives in `.jury/127.0.0.1-4400/` (scorecard,
+55 screenshots, shoot + axe reports) and `anti-slop/audit-001-2026-10-31.md`.
+
+## How to use
+
+Point an AI session at this file and name one phase, e.g. "Read FIXES.md and
+execute fixes/phase-1-a11y-hover.md only." Each phase file is self-contained:
+it lists the exact changes, the files, the verification, and the commits.
+Fix one phase, verify, commit, stop. Do not start the next phase unless asked.
+
+## Ground rules for any agent working a phase
+
+- **DESIGN.md is the visual contract.** Palette (bone/white/ink/muted/IAB),
+  type (Switzer + Fragment Mono), radius 0, hairlines, no shadows. No new
+  colors, fonts, or motion vocabulary.
+- **Follow AGENTS.md.** One logical change per commit, Conventional Commits,
+  imperative subject under 72 chars, no Co-Authored-By, never push, never
+  touch anything outside the change scope.
+- ** antislop rules apply to all UI edits** (the session resolves its mode per
+  its own core rules; no saved settings file exists).
+- **No fabricated content** (R-17/R-18/R-38). Phase 5 is owner-input-gated;
+  do not invent outcomes, metrics, or URLs.
+- **Verify before done.** Serve with `python -m http.server 8000` (from the
+  repo root). Check: console clean, desktop 1440 and phone 390 screenshots,
+  keyboard Tab/Enter where focus changed, reduced-motion pass when motion is
+  touched. Jury capture tooling is already installed:
+  `node ~/.cache/jury/../node_modules` is set up; the scripts live at
+  `C:\Users\VICTUS\.agents\skills\jury\scripts\` (`shoot.mjs`, `audit.mjs`,
+  `serve.mjs`). Phase 7 has the exact commands.
+- **Known capture gotchas** (don't misread them as regressions): the page
+  clock pauses when the tab is not foreground, so idle reveals can look stuck
+  in captures; `desktopFps` on home reads low in headless runs while throttled
+  mobile holds 60; a hover crop can land off-target (h-02 did).
+- `.jury/` and `anti-slop/` are untracked audit artifacts. Don't commit them,
+  don't delete them. Phase 6 adds ignore rules.
+- When a phase is done: tick its row in the status table, note the commit sha.
+
+## Status
+
+| # | Phase file | Scope | Status |
+|---|---|---|---|
+| 1 | [phase-1-a11y-hover.md](fixes/phase-1-a11y-hover.md) | Visible focus + hover feedback (A-01, A-03, A-04) | pending |
+| 2 | [phase-2-exhibits.md](fixes/phase-2-exhibits.md) | Valve color bug + exhibit materiality (A-02, critic d-04/d-05) | pending |
+| 3 | [phase-3-seo.md](fixes/phase-3-seo.md) | Canonical, twitter card, robots, sitemap, 404 h1 (A-05) | pending |
+| 4 | [phase-4-polish.md](fixes/phase-4-polish.md) | Orphan "of.", contact gap, muted contrast (A-07, A-08, A-09) | pending |
+| 5 | [phase-5-content.md](fixes/phase-5-content.md) | Project depth + first live link — OWNER INPUT REQUIRED | blocked |
+| 6 | [phase-6-hygiene.md](fixes/phase-6-hygiene.md) | .gitignore, PLAN.md, data.js, DESIGN.md dead specs | pending |
+| 7 | [phase-7-rescore.md](fixes/phase-7-rescore.md) | Fresh jury re-score + close-out | pending |
+
+Run order 1 → 7. Phase 5 stays blocked until the owner answers its question
+register; everything else is unblocked.
