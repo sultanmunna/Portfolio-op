@@ -170,6 +170,15 @@ svg {
 .site-name {
   font-weight: 500;
   font-size: 1rem;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.3s var(--ease-out);
+}
+
+.site-name:hover {
+  background-size: 100% 1px;
 }
 
 .site-nav {
@@ -465,8 +474,8 @@ main {
 }
 
 .btn-primary:hover {
-  background: var(--ink);
-  border-color: var(--ink);
+  background: transparent;
+  color: var(--ikb);
 }
 
 .copy-note {
@@ -521,6 +530,11 @@ main {
   color: var(--ink);
   text-decoration: underline;
   text-underline-offset: 4px;
+  transition: color 0.2s;
+}
+
+.nf-back:hover {
+  color: var(--ikb);
 }
 
 /* reveals: only hide when js is running */
