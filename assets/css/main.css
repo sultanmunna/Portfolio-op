@@ -522,19 +522,7 @@ main {
 }
 
 .nf-back {
-  display: inline-block;
   margin-top: 28px;
-  padding: 14px 0;
-  font-family: "Fragment Mono", monospace;
-  font-size: 0.8125rem;
-  color: var(--ink);
-  text-decoration: underline;
-  text-underline-offset: 4px;
-  transition: color 0.2s;
-}
-
-.nf-back:hover {
-  color: var(--ikb);
 }
 
 /* reveals: only hide when js is running */
