@@ -46,7 +46,7 @@ Fix one phase, verify, commit, stop. Do not start the next phase unless asked.
 | 2 | [phase-2-exhibits.md](fixes/phase-2-exhibits.md) | Valve color bug + exhibit materiality (A-02, critic d-04/d-05) | done 9bf6871 (deviation: block drops are gated to the ring's bottom arc and funnel x to −0.85 instead of snapping, which would drop them through the gear disc; base plate sits below the ring sweep, not the file's example y) |
 | 3 | [phase-3-seo.md](fixes/phase-3-seo.md) | Canonical, twitter card, robots, sitemap, 404 h1 (A-05) | done 91d2889 |
 | 4 | [phase-4-polish.md](fixes/phase-4-polish.md) | Orphan "of.", contact gap, muted contrast (A-07, A-08, A-09) | done 40328c9 |
-| 5 | [phase-5-content.md](fixes/phase-5-content.md) | Project depth + first live link — OWNER INPUT REQUIRED | blocked |
+| 5 | [phase-5-content.md](fixes/phase-5-content.md) | Project depth + first live link — OWNER INPUT REQUIRED | blocked — owner confirmed 2026-10-31 that repos, problem sentences, outcomes, live URLs and contact details are all placeholders; nothing real to integrate (R-17/R-38), so 5a–5c reopen when content exists |
 | 6 | [phase-6-hygiene.md](fixes/phase-6-hygiene.md) | .gitignore, PLAN.md, data.js, DESIGN.md dead specs | pending |
 | 7 | [phase-7-rescore.md](fixes/phase-7-rescore.md) | Fresh jury re-score + close-out | pending |
 
