@@ -530,6 +530,19 @@ main {
   margin-bottom: 28px;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .nf-plinth rect {
+    transform-box: fill-box;
+    animation: nf-drop 0.55s var(--ease-out) 0.2s backwards;
+  }
+
+  @keyframes nf-drop {
+    from {
+      transform: translateY(-14px);
+    }
+  }
+}
+
 .nf-code {
   font-size: var(--t-xl);
   font-weight: 500;
