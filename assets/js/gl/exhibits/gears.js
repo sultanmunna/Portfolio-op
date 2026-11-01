@@ -22,23 +22,22 @@ function makeGear(radius, teeth, depth, material) {
 
 export function createGears({ environment, reduce, view, requestRender }) {
   const scene = baseScene(environment);
-  const cam = camera(6.2);
+  const cam = camera(7.0);
   const group = new THREE.Group();
-  group.position.x = 0.22;
   scene.add(group);
 
   const gearA = makeGear(0.95, 12, 0.22, materials.chrome());
   gearA.position.set(-0.85, -0.35, 0);
   const gearB = makeGear(0.62, 9, 0.22, materials.inked());
-  gearB.position.set(0.72, -0.62, 0);
+  gearB.position.set(1.22, -0.66, 0);
   const gearC = makeGear(0.48, 7, 0.22, materials.inked());
-  gearC.position.set(0.32, 0.62, 0);
+  gearC.position.set(0.22, 1.3, 0);
   group.add(gearA, gearB, gearC);
 
-  const base = new THREE.Mesh(new THREE.BoxGeometry(2.6, 0.08, 1.4), materials.clay());
-  base.position.y = -1.82;
+  const base = new THREE.Mesh(new THREE.BoxGeometry(2.9, 0.08, 1.4), materials.clay());
+  base.position.set(0.1, -1.82, 0);
   group.add(base);
-  for (const [x, axle] of [[-0.85, -0.35], [0.72, -0.62]]) {
+  for (const [x, axle] of [[-0.85, -0.35], [1.22, -0.66], [0.22, 1.3]]) {
     const post = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, axle + 1.78, 16), materials.inked());
     post.position.set(x, (axle - 1.78) / 2, -0.24);
     group.add(post);
