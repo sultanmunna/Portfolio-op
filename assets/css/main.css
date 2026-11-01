@@ -488,10 +488,12 @@ html:not(.js) .vitrine-view::after {
   transition: background 0.28s, color 0.28s, border-color 0.28s;
 }
 
-.btn:hover {
-  background: var(--ikb);
-  border-color: var(--ikb);
-  color: var(--bone);
+@media (hover: hover) {
+  .btn:hover {
+    background: var(--ikb);
+    border-color: var(--ikb);
+    color: var(--bone);
+  }
 }
 
 .btn:active {
