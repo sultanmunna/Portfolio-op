@@ -52,9 +52,12 @@ Fix one phase, verify, commit, stop. Do not start the next phase unless asked.
 | 8 | [phase-8-settle-tail.md](fixes/phase-8-settle-tail.md) | First-screen settle tail: arm reveals/contact before the GL graph + preload two first-paint faces | done c4e16c0 + b183cb2 (reveals armed before the gl graph; both first-paint faces preloaded) |
 | 9 | [phase-9-exhibit-stills.md](fixes/phase-9-exhibit-stills.md) | Exhibit stills: lens reframe + ink shard cloud, seat Taskforge blocks, ink Gatehouse pipe, touch hints in label rows | done 2ff42af + 1c9c128 + bdf8c9d + bdabd6b + 49d82eb (lens reframed + ink cloud, blocks seated + train centered, pipe inked, keyboard contract in label rows, contract palette synced) |
 | 10 | [phase-10-composition-polish.md](fixes/phase-10-composition-polish.md) | Hero cue to #work + 404 plinth poster scale | done 70534aa + 4c7c42e + 9377b58 + c9c5cd8 (hero cue + contract §5.1 sync; 404 plinth poster scale; one-shot cube drop per owner decision; no-js vitrine fallback closing a planner gap from ux-critic #6) |
+| 11 | [phase-11-lens-orbital-band.md](fixes/phase-11-lens-orbital-band.md) | Machine 01: shard scatter → one-directional orbital band around the lens | — |
+| 12 | [phase-12-gear-kissing-train.md](fixes/phase-12-gear-kissing-train.md) | Machine 02: kissing gear train + gap-centered blocks (owner decision) + §6.2/aria wording sync | — |
+| 13 | [phase-13-touch-contact-polish.md](fixes/phase-13-touch-contact-polish.md) | Coarse-pointer hint swap, clipboard-failure mailto link, (hover:hover) guard | — |
 
-Run order 1 → 10. Phase 5 stays blocked until the owner answers its question
+Run order 1 → 13. Phase 5 stays blocked until the owner answers its question
 register; everything else is unblocked. Pass-4 evidence:
-`.jury/127.0.0.1-4400-pass4/` (card 7.35, best so far; adjudicated artifacts
-and the owner-gated register — content, email placeholder, contested 404
-motion — are listed at the bottom of that card).
+`.jury/127.0.0.1-4400-pass4/` (card 7.35), pass-5 evidence:
+`.jury/127.0.0.1-4400-pass5/` (card 7.45, best so far; adjudicated artifacts
+and the owner-gated register are listed at the bottom of that card).
