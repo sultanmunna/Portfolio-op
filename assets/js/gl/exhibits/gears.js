@@ -56,7 +56,7 @@ export function createGears({ environment, reduce, view, requestRender }) {
   for (let i = 0; i < 4; i++) {
     const block = new THREE.Mesh(blockGeo, materials.cobalt());
     group.add(block);
-    blocks.push({ mesh: block, angle: (i / 4) * Math.PI * 2, dropping: 0 });
+    blocks.push({ mesh: block, angle: (i / 4) * Math.PI * 2 + Math.PI / 12, dropping: 0 });
   }
 
   let angle = 0;
@@ -91,7 +91,8 @@ export function createGears({ environment, reduce, view, requestRender }) {
           block.mesh.scale.setScalar(Math.max(0.001, 1 - p));
           if (p >= 1) {
             block.dropping = 0;
-            block.angle = angle + Math.PI * 0.5;
+            const gap = Math.round((-Math.PI / 2 - Math.PI / 12 - angle) / (Math.PI / 6));
+            block.angle = Math.PI / 12 + gap * (Math.PI / 6);
             block.mesh.scale.setScalar(1);
           }
         } else {
