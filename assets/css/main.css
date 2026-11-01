@@ -515,6 +515,11 @@ html:not(.js) .vitrine-view::after {
   color: var(--ikb);
 }
 
+.copy-note a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .colophon {
   display: flex;
   justify-content: space-between;

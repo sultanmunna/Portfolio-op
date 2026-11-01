@@ -9,11 +9,14 @@ export function initContact() {
     try {
       await navigator.clipboard.writeText(email);
       note.textContent = "copied";
+      setTimeout(() => {
+        note.textContent = "";
+      }, 2200);
     } catch {
-      note.textContent = email;
+      const link = document.createElement("a");
+      link.href = `mailto:${email}`;
+      link.textContent = email;
+      note.replaceChildren(link);
     }
-    setTimeout(() => {
-      note.textContent = "";
-    }, 2200);
   });
 }
