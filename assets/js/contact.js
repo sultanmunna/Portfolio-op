@@ -5,11 +5,13 @@ export function initContact() {
   const note = document.getElementById("copy-note");
   if (!button || !note) return;
 
+  let clearTimer = 0;
   button.addEventListener("click", async () => {
+    clearTimeout(clearTimer);
     try {
       await navigator.clipboard.writeText(email);
       note.textContent = "copied";
-      setTimeout(() => {
+      clearTimer = setTimeout(() => {
         note.textContent = "";
       }, 2200);
     } catch {
